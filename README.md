@@ -52,4 +52,70 @@ public static void main(String[] args)
 }
 ```
 
+### Test your REST resources
+Add the following dependencies to your project:
+
+```xml
+<!-- Test dependencies -->
+<dependency>
+  <groupId>javax.servlet</groupId>
+  <artifactId>javax.servlet-api</artifactId>
+  <scope>test</scope>
+</dependency>
+<dependency>
+  <groupId>org.xwiki.commons</groupId>
+  <artifactId>xwiki-commons-tool-test-component</artifactId>
+  <version>7.4.2</version>
+  <scope>test</scope>
+</dependency>
+<dependency>
+  <groupId>org.xwiki.contrib</groupId>
+  <artifactId>xwiki-restserver-test</artifactId>
+  <version>1.0</version>
+  <scope>test</scope>
+</dependency>
+```
+
+Then, write the functional test:
+```java
+@AllComponents
+public class FunctionalTests
+{
+    /**
+     * Utility class to run and perform requests on a test server.
+     */
+    private static TestServer testServer;
+
+    @BeforeClass
+    public static void setUp() throws Exception
+    {
+        testServer = new TestServer(new XWikiJaxRsApplication());
+        testServer.start();
+    }
+
+    @AfterClass
+    public static void tearDown()
+    {
+        testServer.stop();
+    }
+
+    @Test
+    public void testHelloWorldResource() throws Exception
+    {
+        // Test
+        String result = testServer.doGet("/hello");
+
+        // Verify
+        String expectedResult = "{\n"
+                + "  \"message\" : \"Hello World!\",\n"
+                + "  \"version\" : 1,\n"
+                + "  \"otherMessages\" : [ \"Message 1\", \"Message 2\", \"Message 3\" ]\n"
+                + "}";
+
+        assertEquals(expectedResult, result);
+    }
+}
+```
+And that's all!
+
 You could find a more complete example in `xwiki-restserver-example`, with unit and functional tests.
