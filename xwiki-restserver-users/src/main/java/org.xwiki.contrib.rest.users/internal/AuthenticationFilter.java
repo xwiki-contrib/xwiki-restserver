@@ -98,9 +98,24 @@ public class AuthenticationFilter implements RestFilter
             String username = tokenizer.nextToken();
             String password = tokenizer.nextToken();
 
-            if (!usersConfiguration.getUsers().contains(new User(username, password))) {
+            User user = usersConfiguration.getUser(username);
+            if (user == null || !user.getPassword().equals(password)) {
                 containerRequestContext.abortWith(ACCESS_DENIED);
                 return;
+            }
+
+            // Is the user in the correct group?
+            Restricted annotation = method.getAnnotation(Restricted.class);
+            String[] groups = annotation.groups();
+            boolean found = false;
+            for (int i = 0; i < groups.length; ++i) {
+                if (user.isInGroup(groups[i])) {
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                containerRequestContext.abortWith(ACCESS_DENIED);
             }
         }
     }

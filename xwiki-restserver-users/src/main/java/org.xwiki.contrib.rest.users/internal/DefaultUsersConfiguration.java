@@ -19,8 +19,9 @@
  */
 package org.xwiki.contrib.rest.users.internal;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.xwiki.component.phase.Initializable;
 import org.xwiki.component.phase.InitializationException;
@@ -32,7 +33,7 @@ import org.xwiki.contrib.rest.users.UsersConfiguration;
  */
 public class DefaultUsersConfiguration implements UsersConfiguration, Initializable
 {
-    private Collection<User> users = new ArrayList<>();
+    private Map<String, User> users = new HashMap<>();
 
     @Override
     public void initialize() throws InitializationException
@@ -50,12 +51,24 @@ public class DefaultUsersConfiguration implements UsersConfiguration, Initializa
         } catch (IOException e) {
             throw new InitializationException("Error", e);
         }*/
-        users.add(new User("username", "password"));
+        User user1 = new User("username", "password");
+        user1.addGroup("admin");
+        users.put(user1.getUsername(), user1);
+
+        User user2 = new User("username2", "password2");
+        user2.addGroup("simple");
+        users.put(user2.getUsername(), user2);
     }
 
     @Override
     public Collection<User> getUsers()
     {
-        return new ArrayList<>(users);
+        return users.values();
+    }
+
+    @Override
+    public User getUser(String username)
+    {
+        return users.get(username);
     }
 }

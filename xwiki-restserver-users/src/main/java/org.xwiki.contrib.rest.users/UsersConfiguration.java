@@ -30,4 +30,6 @@ import org.xwiki.component.annotation.Role;
 public interface UsersConfiguration
 {
     Collection<User> getUsers();
+
+    User getUser(String username);
 }

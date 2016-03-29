@@ -47,7 +47,7 @@ public class RestrictedResource implements RestResource
     @GET
     @Produces("application/json")
     @Formatted
-    @Restricted
+    @Restricted(groups = {"admin"})
     public POJO getPOJO()
     {
         POJO object = new POJO("Restricted Resource", 42);

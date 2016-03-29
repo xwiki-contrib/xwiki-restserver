@@ -19,6 +19,9 @@
  */
 package org.xwiki.contrib.rest.users;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.apache.commons.lang3.builder.EqualsBuilder;
 
 /**
@@ -30,10 +33,18 @@ public class User
 
     private String password;
 
+    private Set<String> groups;
+
     public User(String username, String password)
     {
         this.username = username;
         this.password = password;
+        this.groups = new HashSet<>();
+    }
+
+    public void addGroup(String group)
+    {
+        this.groups.add(group);
     }
 
     public String getUsername()
@@ -54,5 +65,15 @@ public class User
         }
 
         return false;
+    }
+
+    public Set getGroups()
+    {
+        return new HashSet(groups);
+    }
+
+    public boolean isInGroup(String group)
+    {
+        return groups.contains(group);
     }
 }
