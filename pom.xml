@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.xwiki.commons</groupId>
+    <artifactId>xwiki-commons-pom</artifactId>
+    <version>7.4.2</version>
+  </parent>
+  <groupId>org.xwiki.contrib</groupId>
+  <artifactId>xwiki-restserver</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <name>XWiki Rest Server - Parent POM</name>
+  <packaging>pom</packaging>
+  <modules>
+    <module>xwiki-restserver-api</module>
+    <module>xwiki-restserver-standalone</module>
+    <module>xwiki-restserver-example</module>
+    <module>xwiki-restserver-test</module>
+  </modules>
+  <developers>
+    <developer>
+      <id>gdelhumeau</id>
+      <name>Guillaume Delhumeau</name>
+      <organization>XWiki SAS</organization>
+      <organizationUrl>http://www.xwiki.com</organizationUrl>
+    </developer>
+  </developers>
+</project>
