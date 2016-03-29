@@ -35,23 +35,20 @@ import org.xwiki.contrib.rest.RestResource;
  * @version $Id: $
  * @since 1.0
  */
-@Path(HelloWorldResource.PATH)
+@Path(FooBar.PATH)
 @Component
 @Singleton
-@Named(HelloWorldResource.PATH)
-public class HelloWorldResource implements RestResource
+@Named(FooBar.PATH)
+public class FooBar implements RestResource
 {
-    public static final String PATH = "/hello";
+    public static final String PATH = "/foobar";
 
     @GET
     @Produces("application/json")
     @Formatted
     public HelloWorld getHelloWorld()
     {
-        HelloWorld object = new HelloWorld("Hello World!", 1);
-        object.addMessage("Message 1");
-        object.addMessage("Message 2");
-        object.addMessage("Message 3");
+        HelloWorld object = new HelloWorld("FooBar", 42);
         return object;
     }
 }
