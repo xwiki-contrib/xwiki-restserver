@@ -19,19 +19,18 @@
  */
 package org.xwiki.contrib.rest.users.internal;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.xwiki.component.phase.Initializable;
 import org.xwiki.component.phase.InitializationException;
 import org.xwiki.contrib.rest.users.User;
-import org.xwiki.contrib.rest.users.UsersConfiguration;
+import org.xwiki.contrib.rest.users.UserManager;
 
 /**
  * @version $Id: $
  */
-public class DefaultUsersConfiguration implements UsersConfiguration, Initializable
+public class DefaultUserManager implements UserManager, Initializable
 {
     private Map<String, User> users = new HashMap<>();
 
@@ -59,12 +58,6 @@ public class DefaultUsersConfiguration implements UsersConfiguration, Initializa
         User user2 = new User("username2", "password2");
         user2.addGroup("simple");
         users.put(user2.getUsername(), user2);
-    }
-
-    @Override
-    public Collection<User> getUsers()
-    {
-        return users.values();
     }
 
     @Override

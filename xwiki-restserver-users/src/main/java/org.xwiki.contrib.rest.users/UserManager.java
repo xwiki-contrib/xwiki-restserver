@@ -19,17 +19,13 @@
  */
 package org.xwiki.contrib.rest.users;
 
-import java.util.Collection;
-
 import org.xwiki.component.annotation.Role;
 
 /**
  * @version $Id: $
  */
 @Role
-public interface UsersConfiguration
+public interface UserManager
 {
-    Collection<User> getUsers();
-
     User getUser(String username);
 }

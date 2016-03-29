@@ -1,2 +1,2 @@
 org.xwiki.contrib.rest.users.internal.AuthenticationFilter
-org.xwiki.contrib.rest.users.internal.DefaultUsersConfiguration
+org.xwiki.contrib.rest.users.internal.DefaultUserManager

@@ -93,9 +93,9 @@ public POJO getPOJO()
 
 The `@Restricted` annotation takes a `groups` parameter, which is a list of group names that are authorized to perform the request.
 
-The user management is implemented in the interface `UsersConfiguration`, that you need to implement to map your user infrastructure (LDAP, etc...).
+The user management is implemented in the interface `UsersManager`, that you need to implement to map your user infrastructure (LDAP, etc...).
 
-#### Default user management implementation
+#### Default user manager implementation
 
 A default implementation will be proposed. 
 

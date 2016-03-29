@@ -38,7 +38,7 @@ import org.xwiki.component.annotation.Component;
 import org.xwiki.contrib.rest.RestFilter;
 import org.xwiki.contrib.rest.users.Restricted;
 import org.xwiki.contrib.rest.users.User;
-import org.xwiki.contrib.rest.users.UsersConfiguration;
+import org.xwiki.contrib.rest.users.UserManager;
 
 /**
  * Add the username and the password get from the Basic Auth mechanism and put it in the headers.
@@ -61,7 +61,7 @@ public class AuthenticationFilter implements RestFilter
             new Headers<Object>());
 
     @Inject
-    private UsersConfiguration usersConfiguration;
+    private UserManager userManager;
 
     @Override
     public void filter(ContainerRequestContext containerRequestContext) throws IOException
@@ -98,7 +98,7 @@ public class AuthenticationFilter implements RestFilter
             String username = tokenizer.nextToken();
             String password = tokenizer.nextToken();
 
-            User user = usersConfiguration.getUser(username);
+            User user = userManager.getUser(username);
             if (user == null || !user.getPassword().equals(password)) {
                 containerRequestContext.abortWith(ACCESS_DENIED);
                 return;
