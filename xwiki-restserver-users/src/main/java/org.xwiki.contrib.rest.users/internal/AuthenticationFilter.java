@@ -99,7 +99,7 @@ public class AuthenticationFilter implements RestFilter
             String password = tokenizer.nextToken();
 
             User user = userManager.getUser(username);
-            if (user == null || !user.getPassword().equals(password)) {
+            if (user == null || !user.isPasswordValid(password)) {
                 containerRequestContext.abortWith(ACCESS_DENIED);
                 return;
             }

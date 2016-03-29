@@ -19,61 +19,15 @@
  */
 package org.xwiki.contrib.rest.users;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.xwiki.component.annotation.Role;
 
 /**
  * @version $Id: $
  */
-public class User
+@Role
+public interface User
 {
-    private String username;
+    boolean isPasswordValid(String password);
 
-    private String password;
-
-    private Set<String> groups;
-
-    public User(String username, String password)
-    {
-        this.username = username;
-        this.password = password;
-        this.groups = new HashSet<>();
-    }
-
-    public void addGroup(String group)
-    {
-        this.groups.add(group);
-    }
-
-    public String getUsername()
-    {
-        return username;
-    }
-
-    public String getPassword()
-    {
-        return password;
-    }
-
-    public boolean equals(Object o)
-    {
-        if (o instanceof User) {
-            User other = (User) o;
-            return new EqualsBuilder().append(username, other.username).append(password, other.password).isEquals();
-        }
-
-        return false;
-    }
-
-    public Set getGroups()
-    {
-        return new HashSet(groups);
-    }
-
-    public boolean isInGroup(String group)
-    {
-        return groups.contains(group);
-    }
+    boolean isInGroup(String groupId);
 }
