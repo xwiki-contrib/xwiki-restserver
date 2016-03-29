@@ -18,11 +18,15 @@ Add the following dependency to your project:
 Then, implement some REST resources by creating XWiki components (must be singleton):
 
 ```java
-@Path("/hello")
-@Component
-@Singleton
-public class HelloWorldResource implements RestResource
+@Path(HelloWorldResource.PATH)  // URL of the resource
+@Component                      // Indicate it's an XWiki component
+@Singleton                      // Only singletons are supportted
+@Named(HelloWorldResource.PATH) // Don't forget to give a name to your component,
+                                // otherwise it will overwrite the "default" component.
+public class HelloWorldResource implements org.xwiki.contrib.rest.RestResource 
 {
+    public static final String PATH = "/hello";
+    
     @GET
     @Produces("application/json")
     @Formatted
