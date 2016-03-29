@@ -67,8 +67,48 @@ public static void main(String[] args)
 
 In plan, but not supported yet.
 
+### Create restricted resources
+Add the following dependency to your project:
+
+```xml
+<dependency>
+  <groupId>org.xwiki.contrib</groupId>
+  <artifactId>xwiki-restserver-users</artifactId>
+  <version>1.0</version>
+</dependency>
+```
+
+Then, use the `@Restricted` annotation in your resource:
+```java
+@GET
+@Produces("application/json")
+@Formatted
+@Restricted(groups = {"admin", "reader"}) // restricted to the "admin" and the "reader" groups
+public POJO getPOJO()
+{
+    POJO object = new POJO("Restricted Resource", 42);
+    return object;
+}
+```
+
+The `@Restricted` annotation takes a `groups` parameter, which is a list of group names that are authorized to perform the request.
+
+The user management is implemented in the interface `UsersConfiguration`, that you need to implement to map your user infrastructure (LDAP, etc...).
+
+#### Default user management implementation
+
+A default implementation will be proposed. 
+
+Put your users in the `users.cfg` file like this:
+```csv
+username1:password1:group1, group2, group3
+username2:password2:group1, group2, group3
+```
+The characters ":" and "," are forbidden in the user name, the password, and the group names.
+
 ### Test your REST resources
 Add the following dependencies to your project:
+
 
 ```xml
 <!-- Test dependencies -->
