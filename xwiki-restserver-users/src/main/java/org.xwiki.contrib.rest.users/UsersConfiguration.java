@@ -17,49 +17,17 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-package org.xwiki.contrib.rest.example;
+package org.xwiki.contrib.rest.users;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
+
+import org.xwiki.component.annotation.Role;
 
 /**
- * Application class holding the "Hello World" messages.
- *
  * @version $Id: $
- * @since 1.0
  */
-public class HelloWorld
+@Role
+public interface UsersConfiguration
 {
-    private String message;
-
-    private int version;
-
-    private List<String> otherMessages;
-
-    public HelloWorld(String message, int version)
-    {
-        this.message = message;
-        this.version = version;
-        this.otherMessages = new ArrayList<>();
-    }
-
-    public String getMessage()
-    {
-        return message;
-    }
-
-    public int getVersion()
-    {
-        return version;
-    }
-
-    public List<String> getOtherMessages()
-    {
-        return otherMessages;
-    }
-
-    public void addMessage(String message)
-    {
-        otherMessages.add(message);
-    }
+    Collection<User> getUsers();
 }

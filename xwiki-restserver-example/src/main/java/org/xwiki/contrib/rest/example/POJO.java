@@ -19,36 +19,47 @@
  */
 package org.xwiki.contrib.rest.example;
 
-import javax.inject.Named;
-import javax.inject.Singleton;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-
-import org.jboss.resteasy.annotations.providers.jackson.Formatted;
-import org.xwiki.component.annotation.Component;
-import org.xwiki.contrib.rest.RestResource;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * Example of resource.
+ * Application class holding the "Hello World" messages.
  *
  * @version $Id: $
  * @since 1.0
  */
-@Path(FooBar.PATH)
-@Component
-@Singleton
-@Named(FooBar.PATH)
-public class FooBar implements RestResource
+public class POJO
 {
-    public static final String PATH = "/foobar";
+    private String message;
 
-    @GET
-    @Produces("application/json")
-    @Formatted
-    public HelloWorld getHelloWorld()
+    private int version;
+
+    private List<String> otherMessages;
+
+    public POJO(String message, int version)
     {
-        HelloWorld object = new HelloWorld("FooBar", 42);
-        return object;
+        this.message = message;
+        this.version = version;
+        this.otherMessages = new ArrayList<>();
+    }
+
+    public String getMessage()
+    {
+        return message;
+    }
+
+    public int getVersion()
+    {
+        return version;
+    }
+
+    public List<String> getOtherMessages()
+    {
+        return otherMessages;
+    }
+
+    public void addMessage(String message)
+    {
+        otherMessages.add(message);
     }
 }

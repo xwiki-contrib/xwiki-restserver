@@ -18,6 +18,7 @@
     <module>xwiki-restserver-standalone</module>
     <module>xwiki-restserver-example</module>
     <module>xwiki-restserver-test</module>
+    <module>xwiki-restserver-users</module>
   </modules>
   <developers>
     <developer>

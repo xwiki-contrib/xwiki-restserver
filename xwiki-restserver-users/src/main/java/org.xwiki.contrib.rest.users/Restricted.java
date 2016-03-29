@@ -17,41 +17,18 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-package org.xwiki.contrib.rest.example;
+package org.xwiki.contrib.rest.users;
 
-import javax.inject.Named;
-import javax.inject.Singleton;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-
-import org.jboss.resteasy.annotations.providers.jackson.Formatted;
-import org.xwiki.component.annotation.Component;
-import org.xwiki.contrib.rest.RestResource;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 /**
- * Example of resource.
+ * Mark the method as restricted, ie available for logged users only.
  *
  * @version $Id: $
  * @since 1.0
  */
-@Path(HelloWorldResource.PATH)
-@Component
-@Singleton
-@Named(HelloWorldResource.PATH)
-public class HelloWorldResource implements RestResource
+@Retention(RetentionPolicy.RUNTIME)
+public @interface Restricted
 {
-    public static final String PATH = "/hello";
-
-    @GET
-    @Produces("application/json")
-    @Formatted
-    public POJO getHelloWorld() throws Exception
-    {
-        POJO object = new POJO("Hello World!", 1);
-        object.addMessage("Message 1");
-        object.addMessage("Message 2");
-        object.addMessage("Message 3");
-        return object;
-    }
 }

@@ -17,41 +17,42 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-package org.xwiki.contrib.rest.example;
+package org.xwiki.contrib.rest.users;
 
-import javax.inject.Named;
-import javax.inject.Singleton;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-
-import org.jboss.resteasy.annotations.providers.jackson.Formatted;
-import org.xwiki.component.annotation.Component;
-import org.xwiki.contrib.rest.RestResource;
+import org.apache.commons.lang3.builder.EqualsBuilder;
 
 /**
- * Example of resource.
- *
  * @version $Id: $
- * @since 1.0
  */
-@Path(HelloWorldResource.PATH)
-@Component
-@Singleton
-@Named(HelloWorldResource.PATH)
-public class HelloWorldResource implements RestResource
+public class User
 {
-    public static final String PATH = "/hello";
+    private String username;
 
-    @GET
-    @Produces("application/json")
-    @Formatted
-    public POJO getHelloWorld() throws Exception
+    private String password;
+
+    public User(String username, String password)
     {
-        POJO object = new POJO("Hello World!", 1);
-        object.addMessage("Message 1");
-        object.addMessage("Message 2");
-        object.addMessage("Message 3");
-        return object;
+        this.username = username;
+        this.password = password;
+    }
+
+    public String getUsername()
+    {
+        return username;
+    }
+
+    public String getPassword()
+    {
+        return password;
+    }
+
+    public boolean equals(Object o)
+    {
+        if (o instanceof User) {
+            User other = (User) o;
+            return new EqualsBuilder().append(username, other.username).append(password, other.password).isEquals();
+        }
+
+        return false;
     }
 }

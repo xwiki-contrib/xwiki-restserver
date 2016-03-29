@@ -19,34 +19,38 @@
  */
 package org.xwiki.contrib.rest.example;
 
-import org.junit.Rule;
-import org.junit.Test;
-import org.xwiki.test.mockito.MockitoComponentMockingRule;
+import javax.inject.Named;
+import javax.inject.Singleton;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import org.jboss.resteasy.annotations.providers.jackson.Formatted;
+import org.xwiki.component.annotation.Component;
+import org.xwiki.contrib.rest.RestResource;
+import org.xwiki.contrib.rest.users.Restricted;
 
 /**
- * Test the example.
+ * Example of resource.
+ *
+ * @version $Id: $
+ * @since 1.0
  */
-public class HelloWorldResourceTest
+@Path(RestrictedResource.PATH)
+@Component
+@Singleton
+@Named(RestrictedResource.PATH)
+public class RestrictedResource implements RestResource
 {
-    @Rule
-    public MockitoComponentMockingRule<HelloWorldResource> mocker =
-            new MockitoComponentMockingRule<>(HelloWorldResource.class);
+    public static final String PATH = "/restricted";
 
-    @Test
-    public void getHelloWorld() throws Exception
+    @GET
+    @Produces("application/json")
+    @Formatted
+    @Restricted
+    public POJO getPOJO()
     {
-        // Test
-        POJO result = mocker.getComponentUnderTest().getHelloWorld();
-
-        // Verify
-        assertEquals("Hello World!", result.getMessage());
-        assertEquals(1, result.getVersion());
-        assertEquals(3, result.getOtherMessages().size());
-        assertTrue(result.getOtherMessages().contains("Message 1"));
-        assertTrue(result.getOtherMessages().contains("Message 2"));
-        assertTrue(result.getOtherMessages().contains("Message 3"));
+        POJO object = new POJO("Restricted Resource", 42);
+        return object;
     }
 }

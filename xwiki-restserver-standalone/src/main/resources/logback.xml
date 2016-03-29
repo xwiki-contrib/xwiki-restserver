@@ -1,0 +1,13 @@
+<configuration>
+  <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+    <!-- Direct log messages to stdout -->
+    <Target>System.out</Target>
+    <encoder>
+      <pattern>%d [%t] %-5p %-30.30c{2} - %m %n</pattern>
+    </encoder>
+  </appender>
+  <logger name="org.xwiki" level="info"/>
+  <root level="warn">
+    <appender-ref ref="stdout"/>
+  </root>
+</configuration>

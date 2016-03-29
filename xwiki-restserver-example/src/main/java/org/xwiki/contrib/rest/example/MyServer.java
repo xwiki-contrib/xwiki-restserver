@@ -37,6 +37,7 @@ public class MyServer
     {
         try {
             XWikiRestServer server = new XWikiRestServer(PORT_NUMBER, new XWikiJaxRsApplication());
+            System.out.println("Starting server...");
             server.run();
         } catch (ComponentLookupException e) {
             e.printStackTrace();

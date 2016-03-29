@@ -1,2 +1,2 @@
-org.xwiki.contrib.rest.example.FooBar
 org.xwiki.contrib.rest.example.HelloWorldResource
+org.xwiki.contrib.rest.example.RestrictedResource

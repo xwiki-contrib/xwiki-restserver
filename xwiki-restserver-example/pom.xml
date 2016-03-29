@@ -13,7 +13,7 @@
   <name>XWiki Rest Server - Example</name>
   <properties>
     <!-- Test coverage -->
-    <xwiki.jacoco.instructionRatio>0.62</xwiki.jacoco.instructionRatio>
+    <xwiki.jacoco.instructionRatio>0.60</xwiki.jacoco.instructionRatio>
   </properties>
   <dependencies>
     <dependency>
