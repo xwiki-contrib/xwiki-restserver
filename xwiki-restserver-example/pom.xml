@@ -76,6 +76,10 @@
                     <Main-Class>org.xwiki.contrib.rest.example.MyServer</Main-Class>
                   </manifestEntries>
                 </transformer>
+                <!-- Append all components.txt in a single file -->
+                <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                  <resource>META-INF/components.txt</resource>
+                </transformer>
               </transformers>
             </configuration>
           </execution>

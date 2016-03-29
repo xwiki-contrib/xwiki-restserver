@@ -47,6 +47,7 @@ public class DefaultUsersConfiguration implements UsersConfiguration, Initializa
                 String username = tokenizer.nextToken();
                 String password = tokenizer.nextToken();
                 users.add(new User(username, password));
+                // load groups
             }
         } catch (IOException e) {
             throw new InitializationException("Error", e);
