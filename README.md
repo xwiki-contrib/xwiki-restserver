@@ -14,7 +14,7 @@ Add the following dependency to your project:
 </dependency>
 ```
 
-Then, implement some REST resources by creating XWiki components (must be singleton):
+Then, implement some REST resources by creating XWiki components (must be singleton), using the JaxRS Standard:
 
 ```java
 @Path(HelloWorldResource.PATH)  // URL of the resource
