@@ -7,7 +7,7 @@ A minimal REST server expandable with XWiki components.
 
 Add the following dependency to your project:
 
-```
+```xml
 <dependency>
   <groupId>org.xwiki.contrib</groupId>
   <artifactId>xwiki-restserver-standalone</artifactId>
@@ -17,7 +17,7 @@ Add the following dependency to your project:
 
 Then, implement some REST resources by creating XWiki components (must be singleton):
 
-```
+```java
 @Path("/hello")
 @Component
 @Singleton
@@ -35,7 +35,7 @@ public class HelloWorldResource implements RestResource
 
 To finish, run a standalone server:
 
-```
+```java
 public static void main(String[] args)
 {
     try {
