@@ -1,5 +1,5 @@
 # XWiki Rest Server
-A minimal REST server expandable with XWiki components.
+A minimal REST server expandable with [XWiki components](http://extensions.xwiki.org/xwiki/bin/view/Extension/Component+Module).
 
 ## Usage
 
@@ -36,6 +36,7 @@ public class HelloWorldResource implements org.xwiki.contrib.rest.RestResource
     }
 }
 ```
+(don't forget to fill the `components.txt` file!)
 
 To finish, run a standalone server:
 
