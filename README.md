@@ -3,14 +3,13 @@ A minimal REST server expandable with [XWiki components](http://extensions.xwiki
 
 ## Usage
 
-### Standalone server
-
+### Create REST resources
 Add the following dependency to your project:
 
 ```xml
 <dependency>
   <groupId>org.xwiki.contrib</groupId>
-  <artifactId>xwiki-restserver-standalone</artifactId>
+  <artifactId>xwiki-restserver-api</artifactId>
   <version>1.0</version>
 </dependency>
 ```
@@ -38,7 +37,19 @@ public class HelloWorldResource implements org.xwiki.contrib.rest.RestResource
 ```
 (don't forget to fill the `components.txt` file!)
 
-To finish, run a standalone server:
+### Standalone server
+
+Add the following dependency to your project:
+
+```xml
+<dependency>
+  <groupId>org.xwiki.contrib</groupId>
+  <artifactId>xwiki-restserver-standalone</artifactId>
+  <version>1.0</version>
+</dependency>
+```
+
+Then run a standalone server:
 
 ```java
 public static void main(String[] args)
@@ -51,6 +62,10 @@ public static void main(String[] args)
     }
 }
 ```
+
+### Create a WAR to put in a Servlet Container
+
+In plan, but not supported yet.
 
 ### Test your REST resources
 Add the following dependencies to your project:
