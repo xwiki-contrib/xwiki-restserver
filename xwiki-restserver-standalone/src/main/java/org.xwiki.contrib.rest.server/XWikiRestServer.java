@@ -19,6 +19,8 @@
  */
 package org.xwiki.contrib.rest.server;
 
+import javax.net.ssl.SSLContext;
+
 import org.jboss.resteasy.plugins.server.undertow.UndertowJaxrsServer;
 import org.xwiki.contrib.rest.XWikiJaxRsApplication;
 import org.xwiki.contrib.rest.server.internal.IsRunningApplication;
@@ -33,12 +35,21 @@ public class XWikiRestServer implements Runnable
 {
     private int portNumber;
 
+    private SSLContext sslContext;
+
     private XWikiJaxRsApplication application;
 
     public XWikiRestServer(int portNumber, XWikiJaxRsApplication application)
     {
         this.portNumber = portNumber;
         this.application = application;
+    }
+
+    public XWikiRestServer(int portNumber, SSLContext sslContext, XWikiJaxRsApplication application)
+    {
+        this.portNumber = portNumber;
+        this.application = application;
+        this.sslContext = sslContext;
     }
 
     @Override
@@ -49,7 +60,12 @@ public class XWikiRestServer implements Runnable
 
         // We manually create the Undertow Builder to set the port that we want
         Undertow.Builder undertowBuilder = Undertow.builder();
-        undertowBuilder.addHttpListener(this.portNumber, "localhost");
+
+        if (isUsingSSL()) {
+            undertowBuilder.addHttpsListener(this.portNumber, "localhost", this.sslContext);
+        } else {
+            undertowBuilder.addHttpListener(this.portNumber, "localhost");
+        }
 
         // We deploy the applications
         server.deploy(application);
@@ -77,5 +93,10 @@ public class XWikiRestServer implements Runnable
     public void setPortNumber(int portNumber)
     {
         this.portNumber = portNumber;
+    }
+
+    public boolean isUsingSSL()
+    {
+        return sslContext != null;
     }
 }
