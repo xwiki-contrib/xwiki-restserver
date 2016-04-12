@@ -65,6 +65,12 @@ public static void main(String[] args)
 }
 ```
 
+By default, XWikiJaxRsApplication creates its own ComponentManager. If you need to use your own ComponentManager, simply pass it to the XWikiJaxRsApplication's constructor:
+
+```java
+XWikiJaxRsApplication application = new XWikiJaxRsApplication(componentManager);
+```
+
 ### Create a WAR to put in a Servlet Container
 
 In plan, but not supported yet.

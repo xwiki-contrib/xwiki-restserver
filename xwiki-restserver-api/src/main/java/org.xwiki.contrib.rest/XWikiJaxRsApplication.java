@@ -41,7 +41,7 @@ public class XWikiJaxRsApplication extends Application
     /**
      * The XWiki Component Manager.
      */
-    private EmbeddableComponentManager componentManager = new EmbeddableComponentManager();
+    private ComponentManager componentManager;
 
     /**
      * The set containing all the discovered resources and providers that will constitute the JAX-RS application.
@@ -49,12 +49,37 @@ public class XWikiJaxRsApplication extends Application
     private Set<Object> restComponents = new HashSet<>();
 
     /**
-     * Creates an XWikiJaxRsApplication.
+     * Creates an XWikiJaxRsApplication using its own ComponentManager.
      * @throws ComponentLookupException if error happens while RestResources are initialized
      */
     public XWikiJaxRsApplication() throws ComponentLookupException
     {
+        // Since no ComponentManager have been passed, we create our own.
+        EmbeddableComponentManager componentManager = new EmbeddableComponentManager();
         componentManager.initialize(this.getClass().getClassLoader());
+        this.componentManager = componentManager;
+
+        // Now we can initialize the REST resources
+        initialize();
+    }
+
+    /**
+     * Creates an XWikiJaxRsApplication using your ComponentManager.
+     * @param componentManager the component manager to use
+     * @throws ComponentLookupException if error happens while RestResources are initialized
+     */
+    public XWikiJaxRsApplication(ComponentManager componentManager) throws ComponentLookupException
+    {
+        this.componentManager = componentManager;
+        initialize();
+    }
+
+    /**
+     * Get all REST resources and filters from the component manager.
+     * @throws ComponentLookupException if error happens
+     */
+    private void initialize() throws ComponentLookupException
+    {
         for (RestResource component : componentManager.<RestResource>getInstanceList(RestResource.class)) {
             restComponents.add(component);
         }
