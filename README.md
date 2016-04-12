@@ -1,6 +1,8 @@
 # XWiki Rest Server
 A minimal and modular REST server using [XWiki components](http://extensions.xwiki.org/xwiki/bin/view/Extension/Component+Module) and Jax-RS.
 
+*Note: this autonomous application IS NOT an XWiki's platform extension and does not require the XWiki runtime.*
+
 ## Usage
 
 ### Create REST resources

@@ -24,11 +24,6 @@
       <artifactId>xwiki-restserver-api</artifactId>
       <version>${project.version}</version>
     </dependency>
-    <dependency>
-      <groupId>org.xwiki.contrib</groupId>
-      <artifactId>xwiki-restserver-users</artifactId>
-      <version>${project.version}</version>
-    </dependency>
     <!-- Undertow -->
     <dependency>
       <groupId>io.undertow</groupId>

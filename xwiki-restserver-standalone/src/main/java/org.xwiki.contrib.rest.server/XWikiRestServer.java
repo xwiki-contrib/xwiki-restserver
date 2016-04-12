@@ -23,6 +23,8 @@ import org.jboss.resteasy.plugins.server.undertow.UndertowJaxrsServer;
 import org.xwiki.contrib.rest.XWikiJaxRsApplication;
 import org.xwiki.contrib.rest.server.internal.IsRunningApplication;
 
+import io.undertow.Undertow;
+
 /**
  * @version $Id: $
  * @since 1.0
@@ -42,14 +44,19 @@ public class XWikiRestServer implements Runnable
     @Override
     public void run()
     {
-        // Not very clean but RestEasy has only considered Undertow for test purpose.
-        // TODO: look if using Netty is better
-        // http://docs.jboss.org/resteasy/docs/3.0.13.Final/userguide/html/RESTEasy_Embedded_Container.html
-        System.setProperty("org.jboss.resteasy.port", Integer.toString(this.portNumber));
+        // We use Undertow as an embedded server: simple, light and efficient.
         UndertowJaxrsServer server = new UndertowJaxrsServer();
+
+        // We manually create the Undertow Builder to set the port that we want
+        Undertow.Builder undertowBuilder = Undertow.builder();
+        undertowBuilder.addHttpListener(this.portNumber, "localhost");
+
+        // We deploy the applications
         server.deploy(application);
         server.deploy(new IsRunningApplication(), "isrunning");
-        server.start();
+
+        // We start the server
+        server.start(undertowBuilder);
     }
 
     public XWikiJaxRsApplication getApplication()
