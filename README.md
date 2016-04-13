@@ -71,17 +71,13 @@ By default, XWikiJaxRsApplication creates its own ComponentManager. If you need 
 XWikiJaxRsApplication application = new XWikiJaxRsApplication(componentManager);
 ```
 
-### Create a WAR to put in a Servlet Container
-
-In plan, but not supported yet.
-
 ### Create restricted resources
 Add the following dependency to your project:
 
 ```xml
 <dependency>
   <groupId>org.xwiki.contrib</groupId>
-  <artifactId>xwiki-restserver-users</artifactId>
+  <artifactId>xwiki-restserver-users-api</artifactId>
   <version>1.0</version>
 </dependency>
 ```
@@ -102,17 +98,6 @@ public POJO getPOJO()
 The `@Restricted` annotation takes a `groups` parameter, which is a list of group names that are authorized to perform the request.
 
 The user management is implemented in the interface `UsersManager`, that you need to implement to map your user infrastructure (LDAP, etc...).
-
-#### Default user manager implementation
-
-A default implementation will be proposed. 
-
-Put your users in the `users.cfg` file like this:
-```csv
-username1:password1:group1, group2, group3
-username2:password2:group1, group2, group3
-```
-The characters ":" and "," are forbidden in the user name, the password, and the group names.
 
 ### Test your REST resources
 Add the following dependencies to your project:
