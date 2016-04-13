@@ -18,4 +18,4 @@ java -jar xwiki-restserver-example-1.0-SNAPSHOT.jar
 Then open your browser and go to
 * http://localhost:9000/isrunning
 * http://localhost:9000/hello
-* http://localhost:9000/foobar
+* http://localhost:9000/restricted (you must be logged for this time, try: `curl -u myUser:abcde http://localhost:9000/restricted`).

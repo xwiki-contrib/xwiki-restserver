@@ -1,2 +1,3 @@
+org.xwiki.contrib.rest.example.DefaultUserManager
 org.xwiki.contrib.rest.example.HelloWorldResource
 org.xwiki.contrib.rest.example.RestrictedResource

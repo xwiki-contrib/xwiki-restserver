@@ -166,4 +166,5 @@ public class FunctionalTests
 ```
 And that's all!
 
-You could find a more complete example in `xwiki-restserver-example`, with unit and functional tests.
+## Working example
+You could find a more complete example in `xwiki-restserver-example`, with a basic user management, unit and functional tests.

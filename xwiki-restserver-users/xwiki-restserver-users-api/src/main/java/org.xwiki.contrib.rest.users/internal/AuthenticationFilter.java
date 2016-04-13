@@ -54,11 +54,11 @@ public class AuthenticationFilter implements RestFilter
 
     private static final String AUTHENTICATION_SCHEME = "Basic";
 
-    private static final ServerResponse ACCESS_DENIED = new ServerResponse("Access denied for this resource", 401,
-            new Headers<Object>());
+    private static final ServerResponse ACCESS_DENIED = new ServerResponse("Access denied for this resource\n", 401,
+            new Headers<>());
 
-    private static final ServerResponse SERVER_ERROR = new ServerResponse("INTERNAL SERVER ERROR", 500,
-            new Headers<Object>());
+    private static final ServerResponse SERVER_ERROR = new ServerResponse("INTERNAL SERVER ERROR\n", 500,
+            new Headers<>());
 
     @Inject
     private UserManager userManager;
@@ -85,7 +85,7 @@ public class AuthenticationFilter implements RestFilter
             String encodedUserPassword = authorization.get(0).replaceFirst(AUTHENTICATION_SCHEME + " ", "");
 
             //Decode username and password
-            String usernameAndPassword = null;
+            String usernameAndPassword;
             try {
                 usernameAndPassword = new String(Base64.decode(encodedUserPassword));
             } catch (IOException e) {
