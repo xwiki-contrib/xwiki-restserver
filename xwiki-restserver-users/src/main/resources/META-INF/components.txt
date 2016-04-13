@@ -1,3 +1,0 @@
-org.xwiki.contrib.rest.users.internal.AuthenticationFilter
-org.xwiki.contrib.rest.users.internal.DefaultUser
-org.xwiki.contrib.rest.users.internal.DefaultUserManager
