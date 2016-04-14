@@ -46,7 +46,7 @@ public class FunctionalTests
     }
 
     @AfterClass
-    public static void tearDown()
+    public static void tearDown() throws Exception
     {
         testServer.stop();
     }

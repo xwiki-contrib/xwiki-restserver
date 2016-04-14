@@ -23,6 +23,7 @@ import javax.net.ssl.SSLContext;
 
 import org.jboss.resteasy.plugins.server.undertow.UndertowJaxrsServer;
 import org.xwiki.contrib.rest.XWikiJaxRsApplication;
+import org.xwiki.contrib.rest.XWikiRestServerException;
 import org.xwiki.contrib.rest.server.internal.IsRunningApplication;
 
 import io.undertow.Undertow;
@@ -39,6 +40,10 @@ public class XWikiRestServer implements Runnable
 
     private XWikiJaxRsApplication application;
 
+    private Thread thread;
+
+    private UndertowJaxrsServer server;
+
     public XWikiRestServer(int portNumber, XWikiJaxRsApplication application)
     {
         this.portNumber = portNumber;
@@ -52,11 +57,39 @@ public class XWikiRestServer implements Runnable
         this.sslContext = sslContext;
     }
 
+    public void start() throws XWikiRestServerException
+    {
+        if (thread != null) {
+            throw new XWikiRestServerException("XWikiRestServer is already running.");
+        }
+        thread = new Thread(this);
+        thread.start();
+    }
+
+    public void join() throws XWikiRestServerException, InterruptedException
+    {
+        if (thread == null) {
+            throw new XWikiRestServerException("XWikiRestServer is not running.");
+        }
+        thread.join();
+    }
+
+    public void stop(boolean wait) throws XWikiRestServerException, InterruptedException
+    {
+        if (thread == null) {
+            throw new XWikiRestServerException("XWikiRestServer is not running.");
+        }
+        server.stop();
+        if (wait) {
+            join();
+        }
+    }
+
     @Override
     public void run()
     {
         // We use Undertow as an embedded server: simple, light and efficient.
-        UndertowJaxrsServer server = new UndertowJaxrsServer();
+        server = new UndertowJaxrsServer();
 
         // We manually create the Undertow Builder to set the port that we want
         Undertow.Builder undertowBuilder = Undertow.builder();

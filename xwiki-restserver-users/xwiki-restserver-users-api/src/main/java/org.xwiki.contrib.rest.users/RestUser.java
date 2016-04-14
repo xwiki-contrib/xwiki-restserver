@@ -25,7 +25,7 @@ import org.xwiki.component.annotation.Role;
  * @version $Id: $
  */
 @Role
-public interface User
+public interface RestUser
 {
     boolean isPasswordValid(String password);
 

@@ -25,7 +25,7 @@ import org.xwiki.component.annotation.Role;
  * @version $Id: $
  */
 @Role
-public interface UserManager
+public interface RestUserManager
 {
-    User getUser(String username);
+    RestUser getUser(String username);
 }

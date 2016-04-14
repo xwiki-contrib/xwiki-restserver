@@ -37,8 +37,8 @@ import org.jboss.resteasy.util.Base64;
 import org.xwiki.component.annotation.Component;
 import org.xwiki.contrib.rest.RestFilter;
 import org.xwiki.contrib.rest.users.Restricted;
-import org.xwiki.contrib.rest.users.User;
-import org.xwiki.contrib.rest.users.UserManager;
+import org.xwiki.contrib.rest.users.RestUser;
+import org.xwiki.contrib.rest.users.RestUserManager;
 
 /**
  * Add the username and the password get from the Basic Auth mechanism and put it in the headers.
@@ -61,7 +61,7 @@ public class AuthenticationFilter implements RestFilter
             new Headers<>());
 
     @Inject
-    private UserManager userManager;
+    private RestUserManager restUserManager;
 
     @Override
     public void filter(ContainerRequestContext containerRequestContext) throws IOException
@@ -98,7 +98,7 @@ public class AuthenticationFilter implements RestFilter
             String username = tokenizer.nextToken();
             String password = tokenizer.nextToken();
 
-            User user = userManager.getUser(username);
+            RestUser user = restUserManager.getUser(username);
             if (user == null || !user.isPasswordValid(password)) {
                 containerRequestContext.abortWith(ACCESS_DENIED);
                 return;

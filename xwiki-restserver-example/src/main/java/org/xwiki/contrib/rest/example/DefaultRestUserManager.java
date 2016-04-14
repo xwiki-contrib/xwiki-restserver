@@ -22,17 +22,17 @@ package org.xwiki.contrib.rest.example;
 import java.util.Arrays;
 import java.util.Collection;
 
-import org.xwiki.contrib.rest.users.User;
-import org.xwiki.contrib.rest.users.UserManager;
+import org.xwiki.contrib.rest.users.RestUser;
+import org.xwiki.contrib.rest.users.RestUserManager;
 
 /**
- * Demo implementation of the UserManager component.
+ * Demo implementation of the {@link RestUserManager} component.
  *
  * @version $Id: $
  */
-public class DefaultUserManager implements UserManager
+public class DefaultRestUserManager implements RestUserManager
 {
-    private User defaultUser = new User()
+    private RestUser defaultRestUser = new RestUser()
     {
         private Collection<String> groups = Arrays.asList("admin", "other");
 
@@ -51,8 +51,8 @@ public class DefaultUserManager implements UserManager
     };
 
     @Override
-    public User getUser(String username)
+    public RestUser getUser(String username)
     {
-        return "myUser".equals(username) ? defaultUser : null;
+        return "myUser".equals(username) ? defaultRestUser : null;
     }
 }

@@ -40,7 +40,7 @@ public class TestServer
 {
     public XWikiJaxRsApplication application;
 
-    public Thread thread;
+    private XWikiRestServer server;
 
     /**
      * Construct a new TestServer.
@@ -57,17 +57,8 @@ public class TestServer
      */
     public void start() throws Exception
     {
-        this.thread = new Thread(new Runnable()
-        {
-            @Override
-            public void run()
-            {
-                XWikiRestServer server = new XWikiRestServer(9000, application);
-                server.run();
-            }
-        });
-
-        this.thread.start();
+        server = new XWikiRestServer(9000, application);
+        server.start();
 
         // Wait until the server is running
         while (!isServerRunning())
@@ -79,9 +70,9 @@ public class TestServer
     /**
      * Stop the server
      */
-    public void stop()
+    public void stop() throws Exception
     {
-        thread.interrupt();
+        server.stop(true);
     }
 
     /**
