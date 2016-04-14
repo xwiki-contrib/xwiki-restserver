@@ -1,1 +1,1 @@
-org.xwiki.contrib.rest.users.internal.AuthenticationFilter
+org.xwiki.contrib.rest.users.internal.BasicAuthenticationFilter

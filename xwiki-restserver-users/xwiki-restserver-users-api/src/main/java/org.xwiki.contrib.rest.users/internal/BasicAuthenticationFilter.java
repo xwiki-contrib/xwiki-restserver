@@ -22,6 +22,7 @@ package org.xwiki.contrib.rest.users.internal;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
 import javax.inject.Inject;
@@ -35,6 +36,8 @@ import org.jboss.resteasy.core.ResourceMethodInvoker;
 import org.jboss.resteasy.core.ServerResponse;
 import org.jboss.resteasy.util.Base64;
 import org.xwiki.component.annotation.Component;
+import org.xwiki.component.phase.Initializable;
+import org.xwiki.component.phase.InitializationException;
 import org.xwiki.contrib.rest.RestFilter;
 import org.xwiki.contrib.rest.users.Restricted;
 import org.xwiki.contrib.rest.users.RestUser;
@@ -47,8 +50,8 @@ import org.xwiki.contrib.rest.users.RestUserManager;
  */
 @Component
 @Singleton
-@Named("Authentication")
-public class AuthenticationFilter implements RestFilter
+@Named("BasicAuthentication")
+public class BasicAuthenticationFilter implements RestFilter, Initializable
 {
     private static final String AUTHORIZATION_PROPERTY = "Authorization";
 
@@ -57,66 +60,82 @@ public class AuthenticationFilter implements RestFilter
     private static final ServerResponse ACCESS_DENIED = new ServerResponse("Access denied for this resource\n", 401,
             new Headers<>());
 
-    private static final ServerResponse SERVER_ERROR = new ServerResponse("INTERNAL SERVER ERROR\n", 500,
-            new Headers<>());
-
     @Inject
     private RestUserManager restUserManager;
 
     @Override
-    public void filter(ContainerRequestContext containerRequestContext) throws IOException
+    public void initialize() throws InitializationException
     {
-        ResourceMethodInvoker methodInvoker = (ResourceMethodInvoker) containerRequestContext.getProperty(
+        ACCESS_DENIED.getHeaders().putSingle("WWW-Authenticate", "Basic realm=\"XWikiRestServer\"");
+        ACCESS_DENIED.getHeaders().putSingle("Content-Type", "text/plain");
+    }
+
+    @Override
+    public void filter(ContainerRequestContext requestContext) throws IOException
+    {
+        ResourceMethodInvoker methodInvoker = (ResourceMethodInvoker) requestContext.getProperty(
                 "org.jboss.resteasy.core.ResourceMethodInvoker");
         Method method = methodInvoker.getMethod();
 
+        // If the method has the Restricted annotation, we might abort the request
         if (method.isAnnotationPresent(Restricted.class)) {
-            //Get request headers
-            MultivaluedMap<String, String> headers = containerRequestContext.getHeaders();
+            RestUser user = getUser(requestContext);
+            if (user == null || !isUserInRestrictedGroup(user, method)) {
+                requestContext.abortWith(ACCESS_DENIED);
+            }
+        }
+    }
 
-            //Fetch authorization header
+    /**
+     * Get the user from the HTTP header.
+     *
+     * @param requestContext request context.
+     * @return the detected user, or null if the authentication has failed
+     */
+    private RestUser getUser(ContainerRequestContext requestContext)
+    {
+        try {
+            // Get request headers
+            MultivaluedMap<String, String> headers = requestContext.getHeaders();
+
+            // Fetch authorization header
             List<String> authorization = headers.get(AUTHORIZATION_PROPERTY);
             if (authorization == null || authorization.isEmpty()) {
-                containerRequestContext.abortWith(ACCESS_DENIED);
-                return;
+                return null;
             }
 
-            //Get encoded username and password
+            // Get encoded username and password
             String encodedUserPassword = authorization.get(0).replaceFirst(AUTHENTICATION_SCHEME + " ", "");
 
-            //Decode username and password
-            String usernameAndPassword;
-            try {
-                usernameAndPassword = new String(Base64.decode(encodedUserPassword));
-            } catch (IOException e) {
-                containerRequestContext.abortWith(SERVER_ERROR);
-                return;
-            }
+            // Decode username and password
+            String usernameAndPassword = new String(Base64.decode(encodedUserPassword));
 
-            //Split username and password tokens
+            // Split username and password tokens
             StringTokenizer tokenizer = new StringTokenizer(usernameAndPassword, ":");
             String username = tokenizer.nextToken();
             String password = tokenizer.nextToken();
 
+            // Get the user from the user manager
             RestUser user = restUserManager.getUser(username);
-            if (user == null || !user.isPasswordValid(password)) {
-                containerRequestContext.abortWith(ACCESS_DENIED);
-                return;
-            }
 
-            // Is the user in the correct group?
-            Restricted annotation = method.getAnnotation(Restricted.class);
-            String[] groups = annotation.groups();
-            boolean found = false;
-            for (int i = 0; i < groups.length; ++i) {
-                if (user.isInGroup(groups[i])) {
-                    found = true;
-                    break;
-                }
-            }
-            if (!found) {
-                containerRequestContext.abortWith(ACCESS_DENIED);
-            }
+            // Return the user if the given password is valid
+            return user != null && user.isPasswordValid(password) ? user : null;
+
+        } catch (IOException | NoSuchElementException e) {
+            return null;
         }
     }
+
+    private boolean isUserInRestrictedGroup(RestUser user, Method method)
+    {
+        Restricted annotation = method.getAnnotation(Restricted.class);
+        String[] groups = annotation.groups();
+        for (int i = 0; i < groups.length; ++i) {
+            if (user.isInGroup(groups[i])) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
