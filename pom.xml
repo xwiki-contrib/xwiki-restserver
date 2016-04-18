@@ -15,8 +15,9 @@
   <packaging>pom</packaging>
   <modules>
     <module>xwiki-restserver-api</module>
-    <module>xwiki-restserver-standalone</module>
+    <module>xwiki-restserver-configuration</module>
     <module>xwiki-restserver-example</module>
+    <module>xwiki-restserver-standalone</module>
     <module>xwiki-restserver-test</module>
     <module>xwiki-restserver-users</module>
   </modules>

@@ -1,0 +1,3 @@
+org.xwiki.contrib.rest.users.internal.DefaultXMLRestUserConfiguration
+org.xwiki.contrib.rest.users.internal.XMLRestUser
+org.xwiki.contrib.rest.users.internal.XMLRestUserManager
