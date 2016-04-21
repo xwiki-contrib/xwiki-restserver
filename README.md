@@ -3,6 +3,12 @@ A minimal and modular REST server using [XWiki components](http://extensions.xwi
 
 *Note: this autonomous application IS NOT an XWiki's platform extension and does not require the XWiki runtime.*
 
+* Project Lead: [Guillaume Delhumea](<http://www.xwiki.org/xwiki/bin/view/XWiki/gdelhumeau) 
+* [Issue Tracker](http://jira.xwiki.org/browse/XREST)
+* Communication: [Mailing List](http://dev.xwiki.org/xwiki/bin/view/Community/MailingLists), [IRC](http://dev.xwiki.org/xwiki/bin/view/Community/IRC)
+* License: LGPL 2.1.
+* Continuous Integration Status: [![Build Status](http://ci.xwiki.org/buildStatus/icon?job=Contrib%20-%20XWiki%20Rest Server)](http://ci.xwiki.org/job/Contrib%20-%20XWiki%20Rest Server/)
+
 ## Usage
 
 ### Create REST resources
