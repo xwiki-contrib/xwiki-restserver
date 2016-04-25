@@ -1,0 +1,17 @@
+<config>
+  <users>
+    <password-salt>MySalt</password-salt>
+    <user>
+      <name>toto</name>
+      <password>hashedPassword1</password>
+      <group>groupA</group>
+      <group>groupB</group>
+      <group>groupC</group>
+    </user>
+    <user>
+      <name>jamesbond</name>
+      <password>hashedPassword2</password>
+      <group>MI6</group>
+    </user>
+  </users>
+</config>

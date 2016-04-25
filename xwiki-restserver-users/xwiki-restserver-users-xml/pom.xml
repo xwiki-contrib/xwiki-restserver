@@ -12,6 +12,11 @@
   <artifactId>xwiki-restserver-users-xml</artifactId>
   <name>XWiki Rest Server - Users - XML</name>
 
+  <properties>
+    <!-- Test coverage -->
+    <xwiki.jacoco.instructionRatio>0.85</xwiki.jacoco.instructionRatio>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>org.xwiki.contrib</groupId>
@@ -23,6 +28,12 @@
       <artifactId>xwiki-restserver-configuration-xml</artifactId>
       <version>${project.version}</version>
     </dependency>
+    <!-- Test dependencies -->
+    <dependency>
+      <groupId>org.xwiki.commons</groupId>
+      <artifactId>xwiki-commons-tool-test-component</artifactId>
+      <version>${commons.version}</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
-
 </project>

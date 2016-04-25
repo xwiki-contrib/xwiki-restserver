@@ -23,9 +23,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
+import org.xwiki.component.annotation.Component;
+import org.xwiki.component.annotation.InstantiationStrategy;
+import org.xwiki.component.descriptor.ComponentInstantiationStrategy;
 import org.xwiki.contrib.rest.XWikiRestServerException;
 import org.xwiki.contrib.rest.users.RestUser;
 import org.xwiki.contrib.rest.users.XMLRestUserConfiguration;
@@ -33,6 +37,9 @@ import org.xwiki.contrib.rest.users.XMLRestUserConfiguration;
 /**
  * @version $Id: $
  */
+@Component
+@InstantiationStrategy(ComponentInstantiationStrategy.PER_LOOKUP)
+@Named("xml")
 public class XMLRestUser implements RestUser
 {
     @Inject
@@ -55,6 +62,11 @@ public class XMLRestUser implements RestUser
     public void setHashedPassword(String hashedPassword)
     {
         this.hashedPassword = hashedPassword;
+    }
+
+    public String getHashedPassword()
+    {
+        return hashedPassword;
     }
 
     public String getName()

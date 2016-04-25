@@ -23,10 +23,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.inject.Named;
+import javax.inject.Provider;
 
 import org.jdom2.Element;
-import org.xwiki.component.manager.ComponentLookupException;
-import org.xwiki.component.manager.ComponentManager;
+import org.xwiki.component.phase.Initializable;
+import org.xwiki.component.phase.InitializationException;
 import org.xwiki.contrib.rest.XWikiRestServerException;
 import org.xwiki.contrib.rest.configuration.XMLConfiguration;
 import org.xwiki.contrib.rest.users.RestUser;
@@ -36,13 +38,14 @@ import org.xwiki.text.StringUtils;
 /**
  * @version $Id: $
  */
-public class DefaultXMLRestUserConfiguration implements XMLRestUserConfiguration
+public class DefaultXMLRestUserConfiguration implements XMLRestUserConfiguration, Initializable
 {
     @Inject
     private XMLConfiguration xmlConfiguration;
 
     @Inject
-    private ComponentManager componentManager;
+    @Named("xml")
+    private Provider<RestUser> userProvider;
 
     private Map<String, XMLRestUser> users = new HashMap<>();
 
@@ -50,6 +53,12 @@ public class DefaultXMLRestUserConfiguration implements XMLRestUserConfiguration
     public Map<String, XMLRestUser> getUsers()
     {
         return users;
+    }
+
+    @Override
+    public void initialize() throws InitializationException
+    {
+        loadUsers();
     }
 
     @Override
@@ -70,32 +79,29 @@ public class DefaultXMLRestUserConfiguration implements XMLRestUserConfiguration
                 }
             }
         }
-        return null;
+        // Fallback is an empty salt
+        return "";
     }
 
-    private void loadUsers() throws XWikiRestServerException
+    private void loadUsers()
     {
-        try {
-            if (xmlConfiguration.getXML() != null) {
-                users.clear();
-                Element usersElement = xmlConfiguration.getXML().getRootElement().getChild("users");
-                if (usersElement != null) {
-                    for (Element userElement : usersElement.getChildren("user")) {
-                        XMLRestUser user = componentManager.getInstance(RestUser.class);
-                        user.setName(userElement.getChildTextTrim("name"));
-                        user.setHashedPassword(userElement.getChildTextTrim("password"));
-                        for (Element groupElement : userElement.getChildren("group")) {
-                            String group = groupElement.getTextTrim();
-                            if (StringUtils.isNotBlank(group)) {
-                                user.addGroup(group);
-                            }
+        if (xmlConfiguration.getXML() != null) {
+            users.clear();
+            Element usersElement = xmlConfiguration.getXML().getRootElement().getChild("users");
+            if (usersElement != null) {
+                for (Element userElement : usersElement.getChildren("user")) {
+                    XMLRestUser user = (XMLRestUser) userProvider.get();
+                    user.setName(userElement.getChildTextTrim("name"));
+                    user.setHashedPassword(userElement.getChildTextTrim("password"));
+                    for (Element groupElement : userElement.getChildren("group")) {
+                        String group = groupElement.getTextTrim();
+                        if (StringUtils.isNotBlank(group)) {
+                            user.addGroup(group);
                         }
-                        users.put(user.getName(), user);
                     }
+                    users.put(user.getName(), user);
                 }
             }
-        } catch (ComponentLookupException e) {
-            throw new XWikiRestServerException(e);
         }
     }
 }
