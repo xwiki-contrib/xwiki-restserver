@@ -62,6 +62,8 @@ public class XMLRestUserTest
         when(configuration.getPasswordSalt()).thenReturn("MySalt");
 
         XMLRestUser user = mocker.getComponentUnderTest();
+
+        // Verify also that the hash is case insensitive
         user.setHashedPassword("ED0208D0D41456D180A6BB2361259B5856F25BD001B1e32af5858BD6795F68D98DB030057038FAFF544B" +
                 "ECE36C35F9C602CF6408B4F9110E864DADDB5EDA9646");
 
