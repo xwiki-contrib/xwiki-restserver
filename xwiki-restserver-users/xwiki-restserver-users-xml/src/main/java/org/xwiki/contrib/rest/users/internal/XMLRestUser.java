@@ -24,6 +24,7 @@ import java.util.Set;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.inject.Provider;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -46,7 +47,7 @@ public class XMLRestUser implements RestUser
     private Logger logger;
 
     @Inject
-    private XMLRestUserConfiguration configuration;
+    private Provider<XMLRestUserConfiguration> configurationProvider;
 
     private String name;
 
@@ -84,7 +85,7 @@ public class XMLRestUser implements RestUser
     {
         try {
             return StringUtils.equalsIgnoreCase(
-                    SHA512.hash(s, configuration.getPasswordSalt()), hashedPassword);
+                    SHA512.hash(s, configurationProvider.get().getPasswordSalt()), hashedPassword);
         } catch (XWikiRestServerException e) {
             logger.error("Failed to compute the validity of the user password.", e);
             return false;

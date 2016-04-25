@@ -19,14 +19,18 @@
  */
 package org.xwiki.contrib.rest.users.internal;
 
+import javax.inject.Provider;
+
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import org.xwiki.component.util.DefaultParameterizedType;
 import org.xwiki.contrib.rest.users.XMLRestUserConfiguration;
 import org.xwiki.test.mockito.MockitoComponentMockingRule;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 /**
@@ -38,12 +42,18 @@ public class XMLRestUserTest
     public MockitoComponentMockingRule<XMLRestUser> mocker =
             new MockitoComponentMockingRule<>(XMLRestUser.class);
 
+    private Provider<XMLRestUserConfiguration> configurationProvider;
+
     private XMLRestUserConfiguration configuration;
 
     @Before
     public void setUp() throws Exception
     {
-        configuration = mocker.getInstance(XMLRestUserConfiguration.class);
+
+        configurationProvider = mocker.registerMockComponent(new DefaultParameterizedType(null, Provider.class,
+                XMLRestUserConfiguration.class));
+        configuration = mock(XMLRestUserConfiguration.class);
+        when(configurationProvider.get()).thenReturn(configuration);
     }
 
     @Test
