@@ -36,7 +36,7 @@ public class MyServer
     public static void main(String[] args)
     {
         try {
-            XWikiRestServer server = new XWikiRestServer(PORT_NUMBER, new XWikiJaxRsApplication());
+            XWikiRestServer server = new XWikiRestServer(PORT_NUMBER, new XWikiJaxRsApplication(), "localhost");
             System.out.println("Starting server...");
             server.run();
         } catch (ComponentLookupException e) {

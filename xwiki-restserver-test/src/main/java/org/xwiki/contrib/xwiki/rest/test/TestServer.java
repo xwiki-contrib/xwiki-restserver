@@ -57,7 +57,7 @@ public class TestServer
      */
     public void start() throws Exception
     {
-        server = new XWikiRestServer(9000, application);
+        server = new XWikiRestServer(9000, application, "localhost");
         server.start();
 
         // Wait until the server is running

@@ -44,10 +44,13 @@ public class XWikiRestServer implements Runnable
 
     private UndertowJaxrsServer server;
 
-    public XWikiRestServer(int portNumber, XWikiJaxRsApplication application)
+    private String host;
+
+    public XWikiRestServer(int portNumber, XWikiJaxRsApplication application, String host)
     {
         this.portNumber = portNumber;
         this.application = application;
+        this.host = host;
     }
 
     public XWikiRestServer(int portNumber, SSLContext sslContext, XWikiJaxRsApplication application)
@@ -95,9 +98,9 @@ public class XWikiRestServer implements Runnable
         Undertow.Builder undertowBuilder = Undertow.builder();
 
         if (isUsingSSL()) {
-            undertowBuilder.addHttpsListener(this.portNumber, "localhost", this.sslContext);
+            undertowBuilder.addHttpsListener(this.portNumber, host, this.sslContext);
         } else {
-            undertowBuilder.addHttpListener(this.portNumber, "localhost");
+            undertowBuilder.addHttpListener(this.portNumber, host);
         }
 
         // We deploy the applications
