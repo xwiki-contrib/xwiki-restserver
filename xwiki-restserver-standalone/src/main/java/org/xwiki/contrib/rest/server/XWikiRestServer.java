@@ -53,11 +53,12 @@ public class XWikiRestServer implements Runnable
         this.host = host;
     }
 
-    public XWikiRestServer(int portNumber, SSLContext sslContext, XWikiJaxRsApplication application)
+    public XWikiRestServer(int portNumber, SSLContext sslContext, XWikiJaxRsApplication application, String host)
     {
         this.portNumber = portNumber;
         this.application = application;
         this.sslContext = sslContext;
+        this.host = host;
     }
 
     public void start() throws XWikiRestServerException
@@ -134,5 +135,20 @@ public class XWikiRestServer implements Runnable
     public boolean isUsingSSL()
     {
         return sslContext != null;
+    }
+
+    public void setHost(String host)
+    {
+        this.host = host;
+    }
+
+    public String getHost()
+    {
+        return host;
+    }
+
+    public void setSslContext(SSLContext sslContext)
+    {
+        this.sslContext = sslContext;
     }
 }
