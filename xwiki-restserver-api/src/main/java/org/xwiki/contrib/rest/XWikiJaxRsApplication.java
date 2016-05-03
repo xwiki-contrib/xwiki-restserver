@@ -86,6 +86,10 @@ public class XWikiJaxRsApplication extends Application
         for (RestFilter filter : componentManager.<RestFilter>getInstanceList(RestFilter.class)) {
             restComponents.add(filter);
         }
+        for (RestExceptionMapper exceptionMapper :
+                componentManager.<RestExceptionMapper>getInstanceList(RestExceptionMapper.class)) {
+            restComponents.add(exceptionMapper);
+        }
     }
 
     @Override
