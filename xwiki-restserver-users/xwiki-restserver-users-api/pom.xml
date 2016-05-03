@@ -4,7 +4,7 @@
   <parent>
     <artifactId>xwiki-restserver-users</artifactId>
     <groupId>org.xwiki.contrib</groupId>
-    <version>1.1</version>
+    <version>1.2-SNAPSHOT</version>
   </parent>
   <artifactId>xwiki-restserver-users-api</artifactId>
   <name>XWiki Rest Server - Users - API</name>
@@ -12,7 +12,7 @@
     <dependency>
       <groupId>org.xwiki.contrib</groupId>
       <artifactId>xwiki-restserver-api</artifactId>
-      <version>1.1</version>
+      <version>1.2-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.apache.commons</groupId>
