@@ -85,6 +85,7 @@ public abstract class AbstractXMLConfiguration implements XMLConfiguration, Init
         }
 
         for (Path location : configurationLocations) {
+            logger.debug("Try [{}] as configuration.", location);
             if (Files.exists(location)) {
                 logger.info("Using [{}] as configuration.", location);
                 return location;
