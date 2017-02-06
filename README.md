@@ -7,7 +7,7 @@ A minimal and modular REST server using [XWiki components](http://extensions.xwi
 * [Issue Tracker](http://jira.xwiki.org/browse/XREST)
 * Communication: [Mailing List](http://dev.xwiki.org/xwiki/bin/view/Community/MailingLists), [IRC](http://dev.xwiki.org/xwiki/bin/view/Community/IRC)
 * License: LGPL 2.1.
-* Continuous Integration Status: [![Build Status](http://ci.xwiki.org/buildStatus/icon?job=Contrib%20-%20XWiki%20Rest Server)](http://ci.xwiki.org/job/Contrib%20-%20XWiki%20Rest Server/)
+* Continuous Integration Status: [![Build Status](http://ci.xwiki.org/buildStatus/icon?job=XWiki Contrib/xwiki-restserver/master)](http://ci.xwiki.org/view/Contrib/job/XWiki%20Contrib/job/xwiki-restserver/job/master/)
 
 ## Usage
 
