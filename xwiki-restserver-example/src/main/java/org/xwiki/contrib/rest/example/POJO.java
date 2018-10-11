@@ -23,7 +23,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Application class holding the "Hello World" messages.
+ * Plain Old Java Object (POJO) holding the "Hello World" messages. Does not have any interest except to show an example
+ * of how an object can be serialized with the XWiki Rest Server Application.
  *
  * @version $Id: $
  * @since 1.0
@@ -36,6 +37,11 @@ public class POJO
 
     private List<String> otherMessages;
 
+    /**
+     * Build a POJO with a message and a version.
+     * @param message a message
+     * @param version a number
+     */
     public POJO(String message, int version)
     {
         this.message = message;
@@ -43,21 +49,33 @@ public class POJO
         this.otherMessages = new ArrayList<>();
     }
 
+    /**
+     * @return the message
+     */
     public String getMessage()
     {
         return message;
     }
 
+    /**
+     * @return the version
+     */
     public int getVersion()
     {
         return version;
     }
 
+    /**
+     * @return other messages
+     */
     public List<String> getOtherMessages()
     {
         return otherMessages;
     }
 
+    /**
+     * @param message message to add in the "other messages" list
+     */
     public void addMessage(String message)
     {
         otherMessages.add(message);

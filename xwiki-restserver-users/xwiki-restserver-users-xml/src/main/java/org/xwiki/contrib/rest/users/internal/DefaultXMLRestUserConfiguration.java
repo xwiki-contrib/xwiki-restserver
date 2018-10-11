@@ -36,10 +36,14 @@ import org.xwiki.contrib.rest.users.XMLRestUserConfiguration;
 import org.xwiki.text.StringUtils;
 
 /**
+ * Default implementation of {@link XMLRestUserConfiguration}.
+ *
  * @version $Id: $
  */
 public class DefaultXMLRestUserConfiguration implements XMLRestUserConfiguration, Initializable
 {
+    private static final String USERS = "users";
+
     @Inject
     private XMLConfiguration xmlConfiguration;
 
@@ -71,7 +75,7 @@ public class DefaultXMLRestUserConfiguration implements XMLRestUserConfiguration
     public String getPasswordSalt()
     {
         if (xmlConfiguration.getXML() != null) {
-            Element usersElement = xmlConfiguration.getXML().getRootElement().getChild("users");
+            Element usersElement = xmlConfiguration.getXML().getRootElement().getChild(USERS);
             if (usersElement != null) {
                 String salt = usersElement.getChildText("password-salt");
                 if (StringUtils.isNotBlank(salt)) {
@@ -87,7 +91,7 @@ public class DefaultXMLRestUserConfiguration implements XMLRestUserConfiguration
     {
         if (xmlConfiguration.getXML() != null) {
             users.clear();
-            Element usersElement = xmlConfiguration.getXML().getRootElement().getChild("users");
+            Element usersElement = xmlConfiguration.getXML().getRootElement().getChild(USERS);
             if (usersElement != null) {
                 for (Element userElement : usersElement.getChildren("user")) {
                     XMLRestUser user = (XMLRestUser) userProvider.get();

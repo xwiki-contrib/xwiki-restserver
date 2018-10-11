@@ -22,10 +22,16 @@ package org.xwiki.contrib.rest.users;
 import org.xwiki.component.annotation.Role;
 
 /**
+ * Handle users of the REST server.
+ *
  * @version $Id: $
  */
 @Role
 public interface RestUserManager
 {
+    /**
+     * @param username a username
+     * @return the corresponding RestUser or null if the username has no match in the internal list of users
+     */
     RestUser getUser(String username);
 }

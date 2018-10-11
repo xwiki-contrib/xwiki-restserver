@@ -22,12 +22,22 @@ package org.xwiki.contrib.rest.users;
 import org.xwiki.component.annotation.Role;
 
 /**
+ * A user (represented by a username) of the Rest Server.
+ *
  * @version $Id: $
  */
 @Role
 public interface RestUser
 {
+    /**
+     * @param password a password
+     * @return whether or not the user is authenticated by the given password
+     */
     boolean isPasswordValid(String password);
 
+    /**
+     * @param groupId some group id
+     * @return whether or not the user is a member of the given group
+     */
     boolean isInGroup(String groupId);
 }

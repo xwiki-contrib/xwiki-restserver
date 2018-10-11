@@ -20,20 +20,35 @@
 package org.xwiki.contrib.rest;
 
 /**
+ * Exception thrown by the XWiki Rest Server.
+ *
  * @version $Id: $
  */
 public class XWikiRestServerException extends Exception
 {
+    /**
+     * Construct an empty exception with nothing but an error message.
+     * @param message A message explaining the problem.
+     */
     public XWikiRestServerException(String message)
     {
         super(message);
     }
 
+    /**
+     * Wrap an existing Throwable to a XWikiRestServerException and add a new error message.
+     * @param message A message explaining the problem.
+     * @param cause the Throwable object to wrap
+     */
     public XWikiRestServerException(String message, Throwable cause)
     {
         super(message, cause);
     }
 
+    /**
+     * Wrap an existing Throwable to a XWikiRestServerException.
+     * @param cause the Throwable object to wrap
+     */
     public XWikiRestServerException(Throwable cause)
     {
         super(cause);

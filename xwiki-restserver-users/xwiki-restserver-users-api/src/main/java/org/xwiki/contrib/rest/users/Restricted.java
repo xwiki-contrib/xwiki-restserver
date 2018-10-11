@@ -23,7 +23,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 /**
- * Mark the method as restricted, ie available for logged users only.
+ * Mark the method as restricted, ie. available for users who a re member of given groups.
  *
  * @version $Id: $
  * @since 1.0
@@ -31,5 +31,8 @@ import java.lang.annotation.RetentionPolicy;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Restricted
 {
+    /**
+     * @return the array of authorized groups.
+     */
     String[] groups();
 }

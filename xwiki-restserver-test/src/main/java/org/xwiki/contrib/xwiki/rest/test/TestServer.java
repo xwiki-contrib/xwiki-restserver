@@ -38,7 +38,7 @@ import org.xwiki.contrib.rest.server.XWikiRestServer;
  */
 public class TestServer
 {
-    public XWikiJaxRsApplication application;
+    private XWikiJaxRsApplication application;
 
     private XWikiRestServer server;
 
@@ -52,7 +52,7 @@ public class TestServer
     }
 
     /**
-     * Start the server in a thread
+     * Start the server in a thread.
      * @throws Exception if error occurs
      */
     public void start() throws Exception
@@ -68,7 +68,8 @@ public class TestServer
     }
 
     /**
-     * Stop the server
+     * Stop the server.
+     * @throws Exception if error occurs
      */
     public void stop() throws Exception
     {
@@ -92,7 +93,7 @@ public class TestServer
     }
 
     /**
-     * Perform a GET request on the specified resource
+     * Perform a GET request on the specified resource.
      * @param resource the resource to reach
      * @return the content
      * @throws IOException if error happens

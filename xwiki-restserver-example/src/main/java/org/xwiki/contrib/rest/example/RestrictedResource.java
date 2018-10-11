@@ -31,7 +31,7 @@ import org.xwiki.contrib.rest.RestResource;
 import org.xwiki.contrib.rest.users.Restricted;
 
 /**
- * Example of resource.
+ * Example of resource restricted to a given group.
  *
  * @version $Id: $
  * @since 1.0
@@ -42,8 +42,15 @@ import org.xwiki.contrib.rest.users.Restricted;
 @Named(RestrictedResource.PATH)
 public class RestrictedResource implements RestResource
 {
+    /**
+     * Path of the REST resource.
+     */
     public static final String PATH = "/restricted";
 
+    /**
+     * @return a JSON-serialized object if the user of the request is a member of the "admin" group. User will get a 401
+     * error otherwise.
+     */
     @GET
     @Produces("application/json")
     @Formatted

@@ -31,6 +31,9 @@ import javax.ws.rs.Produces;
 @Path("/")
 public class IsRunningResource
 {
+    /**
+     * @return "OK", a plain text message to prove the server is running
+     */
     @GET
     @Produces("text/plain")
     public String get()

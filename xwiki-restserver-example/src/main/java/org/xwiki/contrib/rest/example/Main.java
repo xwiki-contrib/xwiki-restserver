@@ -29,15 +29,26 @@ import org.xwiki.contrib.rest.server.XWikiRestServer;
  * @version $Id: $
  * @since 1.0
  */
-public class MyServer
+public final class Main
 {
     private static final int PORT_NUMBER = 9000;
 
+    /**
+     * It's forbidden to create an instance of this class.
+     */
+    private Main()
+    {
+    }
+
+    /**
+     * Entry-point of the application.
+     * @param args arguments of the command line
+     */
+    @SuppressWarnings("checkstyle:uncommentedmain")
     public static void main(String[] args)
     {
         try {
             XWikiRestServer server = new XWikiRestServer(PORT_NUMBER, new XWikiJaxRsApplication(), "localhost");
-            System.out.println("Starting server...");
             server.run();
         } catch (ComponentLookupException e) {
             e.printStackTrace();

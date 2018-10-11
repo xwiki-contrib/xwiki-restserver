@@ -38,6 +38,8 @@ public interface XMLConfiguration
 
     /**
      * Reload the configuration.
+     *
+     * @throws XWikiRestServerException if an error occurs while reloading the configuration.
      */
     void reload() throws XWikiRestServerException;
 }

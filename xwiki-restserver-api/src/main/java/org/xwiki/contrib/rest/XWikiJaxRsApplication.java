@@ -55,9 +55,9 @@ public class XWikiJaxRsApplication extends Application
     public XWikiJaxRsApplication() throws ComponentLookupException
     {
         // Since no ComponentManager have been passed, we create our own.
-        EmbeddableComponentManager componentManager = new EmbeddableComponentManager();
-        componentManager.initialize(this.getClass().getClassLoader());
-        this.componentManager = componentManager;
+        EmbeddableComponentManager embeddableComponentManager = new EmbeddableComponentManager();
+        embeddableComponentManager.initialize(this.getClass().getClassLoader());
+        this.componentManager = embeddableComponentManager;
 
         // Now we can initialize the REST resources
         initialize();
@@ -86,8 +86,8 @@ public class XWikiJaxRsApplication extends Application
         for (RestFilter filter : componentManager.<RestFilter>getInstanceList(RestFilter.class)) {
             restComponents.add(filter);
         }
-        for (RestExceptionMapper exceptionMapper :
-                componentManager.<RestExceptionMapper>getInstanceList(RestExceptionMapper.class)) {
+        for (RestExceptionMapper exceptionMapper
+                : componentManager.<RestExceptionMapper>getInstanceList(RestExceptionMapper.class)) {
             restComponents.add(exceptionMapper);
         }
     }

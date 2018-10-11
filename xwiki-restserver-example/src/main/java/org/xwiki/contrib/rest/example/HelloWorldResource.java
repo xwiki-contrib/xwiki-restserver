@@ -41,8 +41,15 @@ import org.xwiki.contrib.rest.RestResource;
 @Named(HelloWorldResource.PATH)
 public class HelloWorldResource implements RestResource
 {
+    /**
+     * Path of the resource.
+     */
     public static final String PATH = "/hello";
 
+    /**
+     * @return a JSON-serialized object with some demo content
+     * @throws Exception if an error occurs
+     */
     @GET
     @Produces("application/json")
     @Formatted

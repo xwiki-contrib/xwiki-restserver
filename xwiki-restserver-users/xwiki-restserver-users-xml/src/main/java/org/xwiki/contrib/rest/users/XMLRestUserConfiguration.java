@@ -26,14 +26,26 @@ import org.xwiki.contrib.rest.XWikiRestServerException;
 import org.xwiki.contrib.rest.users.internal.XMLRestUser;
 
 /**
+ * Provide a configuration that load all users and the password salt in an xml file.
+ *
  * @version $Id: $
  */
 @Role
 public interface XMLRestUserConfiguration
 {
+    /**
+     * @return a map of users, where the user's name is the key
+     */
     Map<String, XMLRestUser> getUsers();
 
+    /**
+     * Reload the configuration, in case he XML file has been modified during the execution of the server.
+     * @throws XWikiRestServerException if an error happens
+     */
     void reload() throws XWikiRestServerException;
 
+    /**
+     * @return the salt use to hash the password. Should be improved so that each user has a unique salt.
+     */
     String getPasswordSalt();
 }

@@ -26,16 +26,36 @@ import java.security.NoSuchAlgorithmException;
 import org.xwiki.contrib.rest.XWikiRestServerException;
 
 /**
+ * Utility class to perform SHA512 checksums.
+ *
  * @version $Id: $
  */
-public class SHA512
+public final class SHA512
 {
+    private static final String UTF_8 = "UTF-8";
+
+    private static final String SHA_512 = "SHA-512";
+
+    /**
+     * It is forbidden to create an instance of that class.
+     */
+    private SHA512()
+    {
+    }
+
+    /**
+     * Hash the given string with the given salt.
+     * @param toHash string to hash
+     * @param salt the salt
+     * @return a SHA-512 hashed string
+     * @throws XWikiRestServerException if an error occurs
+     */
     public static String hash(String toHash, String salt) throws XWikiRestServerException
     {
         try {
-            MessageDigest md = MessageDigest.getInstance("SHA-512");
-            md.update(salt.getBytes("UTF-8"));
-            byte[] bytes = md.digest(toHash.getBytes("UTF-8"));
+            MessageDigest md = MessageDigest.getInstance(SHA_512);
+            md.update(salt.getBytes(UTF_8));
+            byte[] bytes = md.digest(toHash.getBytes(UTF_8));
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < bytes.length; i++) {
                 sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));

@@ -36,6 +36,8 @@ import org.xwiki.contrib.rest.users.RestUser;
 import org.xwiki.contrib.rest.users.XMLRestUserConfiguration;
 
 /**
+ * A user loaded from a XML file.
+ *
  * @version $Id: $
  */
 @Component
@@ -55,26 +57,41 @@ public class XMLRestUser implements RestUser
 
     private Set<String> groups = new HashSet<>();
 
+    /**
+     * @param name the name of the user
+     */
     public void setName(String name)
     {
         this.name = name;
     }
 
+    /**
+     * @param hashedPassword the password of the user, hashed with SHA512 and a salt (could be improved)
+     */
     public void setHashedPassword(String hashedPassword)
     {
         this.hashedPassword = hashedPassword;
     }
 
+    /**
+     * @return the hashed password
+     */
     public String getHashedPassword()
     {
         return hashedPassword;
     }
 
+    /**
+     * @return the name of the user
+     */
     public String getName()
     {
         return name;
     }
 
+    /**
+     * @param group add a group this user belongs to
+     */
     public void addGroup(String group)
     {
         groups.add(group);
