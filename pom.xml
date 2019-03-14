@@ -34,6 +34,7 @@
   <packaging>pom</packaging>
   <properties>
     <commons.version>9.11.8</commons.version>
+    <jackson.version>2.9.8</jackson.version>
   </properties>
   <modules>
     <module>xwiki-restserver-api</module>
@@ -69,22 +70,22 @@
       <dependency>
         <groupId>com.fasterxml.jackson.core</groupId>
         <artifactId>jackson-core</artifactId>
-        <version>2.9.5</version>
+        <version>${jackson.version}</version>
       </dependency>
       <dependency>
         <groupId>com.fasterxml.jackson.core</groupId>
         <artifactId>jackson-databind</artifactId>
-        <version>2.9.5</version>
+        <version>${jackson.version}</version>
       </dependency>
       <dependency>
         <groupId>com.fasterxml.jackson.core</groupId>
         <artifactId>jackson-annotations</artifactId>
-        <version>2.9.5</version>
+        <version>${jackson.version}</version>
       </dependency>
       <dependency>
         <groupId>com.fasterxml.jackson.module</groupId>
         <artifactId>jackson-module-jaxb-annotations</artifactId>
-        <version>2.9.5</version>
+        <version>${jackson.version}</version>
       </dependency>
       <dependency>
         <groupId>org.jboss.spec.javax.annotation</groupId>
