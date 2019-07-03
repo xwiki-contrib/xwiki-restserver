@@ -30,10 +30,6 @@
   <artifactId>xwiki-restserver-api</artifactId>
   <version>3.1-SNAPSHOT</version>
   <name>XWiki Rest Server - API</name>
-  <properties>
-    <!-- Version of third libraries -->
-    <resteasy.version>3.6.2.Final</resteasy.version>
-  </properties>
   <repositories>
     <repository>
       <id>jboss</id>

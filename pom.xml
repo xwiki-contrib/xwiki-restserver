@@ -27,14 +27,19 @@
     <artifactId>parent-platform</artifactId>
     <version>9.11.8</version>
   </parent>
-  <groupId>org.xwiki.contrib</groupId>
   <artifactId>xwiki-restserver</artifactId>
   <version>3.1-SNAPSHOT</version>
   <name>XWiki Rest Server - Parent POM</name>
   <packaging>pom</packaging>
   <properties>
+    <!-- Version of third-party libraries -->
     <commons.version>9.11.8</commons.version>
-    <jackson.version>2.9.8</jackson.version>
+    <resteasy.version>3.8.0.Final</resteasy.version>
+    <jackson.version>2.9.9</jackson.version>
+    <servlet.version>4.0.1</servlet.version>
+    <undertow.version>2.0.21.Final</undertow.version>
+    <logback.version>1.2.3</logback.version>
+    <slf4j.version>1.7.26</slf4j.version>
   </properties>
   <modules>
     <module>xwiki-restserver-api</module>
@@ -96,6 +101,16 @@
         <groupId>javax.servlet</groupId>
         <artifactId>javax.servlet-api</artifactId>
         <version>4.0.1</version>
+      </dependency>
+      <dependency>
+        <groupId>javax.validation</groupId>
+        <artifactId>validation-api</artifactId>
+        <version>2.0.1.Final</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.logging</groupId>
+        <artifactId>jboss-logging</artifactId>
+        <version>3.4.0.Final</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
