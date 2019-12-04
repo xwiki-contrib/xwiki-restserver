@@ -52,15 +52,6 @@
       <artifactId>undertow-servlet</artifactId>
       <version>${undertow.version}</version>
     </dependency>
-    <!--  Servlet API -->
-    <!--
-    <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>javax.servlet-api</artifactId>
-      <version>${servlet.version}</version>-->
-      <!-- Needed because it is wrongly set as provided by xwiki-commons-pom which usually run on a container -->
-      <!--<scope>compile</scope>
-    </dependency>-->
     <!-- Logger -->
     <dependency>
       <groupId>ch.qos.logback</groupId>
