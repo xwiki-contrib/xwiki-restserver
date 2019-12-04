@@ -25,10 +25,10 @@
   <parent>
     <groupId>org.xwiki.contrib</groupId>
     <artifactId>xwiki-restserver</artifactId>
-    <version>3.2-SNAPSHOT</version>
+    <version>3.2</version>
   </parent>
   <artifactId>xwiki-restserver-api</artifactId>
-  <version>3.2-SNAPSHOT</version>
+  <version>3.2</version>
   <name>XWiki Rest Server - API</name>
   <repositories>
     <repository>
