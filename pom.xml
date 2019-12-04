@@ -34,11 +34,11 @@
   <properties>
     <!-- Version of third-party libraries -->
     <commons.version>9.11.8</commons.version>
-    <resteasy.version>3.8.0.Final</resteasy.version>
+    <resteasy.version>4.4.1.Final</resteasy.version>
     <jackson.version>2.10.1</jackson.version>
     <jackson.databind.version>${jackson.version}</jackson.databind.version>
     <servlet.version>4.0.1</servlet.version>
-    <undertow.version>2.0.21.Final</undertow.version>
+    <undertow.version>2.0.23.Final</undertow.version>
     <logback.version>1.2.3</logback.version>
     <slf4j.version>1.7.26</slf4j.version>
   </properties>
@@ -74,39 +74,34 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>com.fasterxml.jackson.core</groupId>
-        <artifactId>jackson-core</artifactId>
-        <version>${jackson.version}</version>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpclient</artifactId>
+        <version>4.5.10</version>
       </dependency>
       <dependency>
-        <groupId>com.fasterxml.jackson.core</groupId>
-        <artifactId>jackson-databind</artifactId>
-        <version>${jackson.databind.version}</version>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpcore</artifactId>
+        <version>4.4.12</version>
       </dependency>
       <dependency>
-        <groupId>com.fasterxml.jackson.core</groupId>
-        <artifactId>jackson-annotations</artifactId>
-        <version>${jackson.version}</version>
+        <groupId>commons-codec</groupId>
+        <artifactId>commons-codec</artifactId>
+        <version>1.13</version>
       </dependency>
       <dependency>
-        <groupId>com.fasterxml.jackson.module</groupId>
-        <artifactId>jackson-module-jaxb-annotations</artifactId>
-        <version>${jackson.version}</version>
+        <groupId>org.glassfish.jaxb</groupId>
+        <artifactId>jaxb-runtime</artifactId>
+        <version>2.3.3-b01</version>
       </dependency>
       <dependency>
-        <groupId>org.jboss.spec.javax.annotation</groupId>
-        <artifactId>jboss-annotations-api_1.2_spec</artifactId>
-        <version>1.0.2.Final</version>
+        <groupId>com.google.guava</groupId>
+        <artifactId>guava</artifactId>
+        <version>28.1-jre</version>
       </dependency>
       <dependency>
-        <groupId>javax.servlet</groupId>
-        <artifactId>javax.servlet-api</artifactId>
-        <version>4.0.1</version>
-      </dependency>
-      <dependency>
-        <groupId>javax.validation</groupId>
-        <artifactId>validation-api</artifactId>
-        <version>2.0.1.Final</version>
+        <groupId>org.jboss.spec.javax.servlet</groupId>
+        <artifactId>jboss-servlet-api_4.0_spec</artifactId>
+        <version>2.0.0.Final</version>
       </dependency>
       <dependency>
         <groupId>org.jboss.logging</groupId>

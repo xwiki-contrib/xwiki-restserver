@@ -22,7 +22,6 @@ package org.xwiki.contrib.rest.users.internal;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
 import javax.inject.Inject;
@@ -34,7 +33,7 @@ import javax.ws.rs.core.MultivaluedMap;
 import org.jboss.resteasy.core.Headers;
 import org.jboss.resteasy.core.ResourceMethodInvoker;
 import org.jboss.resteasy.core.ServerResponse;
-import org.jboss.resteasy.util.Base64;
+import java.util.Base64;
 import org.xwiki.component.annotation.Component;
 import org.xwiki.component.phase.Initializable;
 import org.xwiki.component.phase.InitializationException;
@@ -108,7 +107,7 @@ public class BasicAuthenticationFilter implements RestFilter, Initializable
             String encodedUserPassword = authorization.get(0).replaceFirst(AUTHENTICATION_SCHEME + " ", "");
 
             // Decode username and password
-            String usernameAndPassword = new String(Base64.decode(encodedUserPassword));
+            String usernameAndPassword = new String(Base64.getDecoder().decode(encodedUserPassword));
 
             // Split username and password tokens
             StringTokenizer tokenizer = new StringTokenizer(usernameAndPassword, ":");
@@ -121,7 +120,7 @@ public class BasicAuthenticationFilter implements RestFilter, Initializable
             // Return the user if the given password is valid
             return user != null && user.isPasswordValid(password) ? user : null;
 
-        } catch (IOException | NoSuchElementException e) {
+        } catch (Exception e) {
             return null;
         }
     }

@@ -36,6 +36,11 @@
       <artifactId>xwiki-restserver-api</artifactId>
       <version>${project.version}</version>
     </dependency>
+    <dependency>
+      <groupId>org.jboss.resteasy</groupId>
+      <artifactId>resteasy-core</artifactId>
+      <version>${resteasy.version}</version>
+    </dependency>
     <!-- Undertow -->
     <dependency>
       <groupId>io.undertow</groupId>
@@ -48,13 +53,14 @@
       <version>${undertow.version}</version>
     </dependency>
     <!--  Servlet API -->
+    <!--
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
-      <version>${servlet.version}</version>
+      <version>${servlet.version}</version>-->
       <!-- Needed because it is wrongly set as provided by xwiki-commons-pom which usually run on a container -->
-      <scope>compile</scope>
-    </dependency>
+      <!--<scope>compile</scope>
+    </dependency>-->
     <!-- Logger -->
     <dependency>
       <groupId>ch.qos.logback</groupId>

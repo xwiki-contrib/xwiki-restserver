@@ -46,13 +46,19 @@
     <!-- Rest Easy-->
     <dependency>
       <groupId>org.jboss.resteasy</groupId>
-      <artifactId>resteasy-jaxrs</artifactId>
+      <artifactId>resteasy-core-spi</artifactId>
       <version>${resteasy.version}</version>
     </dependency>
     <dependency>
       <groupId>org.jboss.resteasy</groupId>
       <artifactId>resteasy-undertow</artifactId>
       <version>${resteasy.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <!-- JSON marshalling for RESTEasy -->
     <dependency>

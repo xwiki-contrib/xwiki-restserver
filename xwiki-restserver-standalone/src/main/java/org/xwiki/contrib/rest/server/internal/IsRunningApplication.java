@@ -22,6 +22,7 @@ package org.xwiki.contrib.rest.server.internal;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
 /**
@@ -29,6 +30,7 @@ import javax.ws.rs.core.Application;
  *
  * @version $Id: $
  */
+@ApplicationPath("isrunning")
 public class IsRunningApplication extends Application
 {
     @Override

@@ -144,7 +144,7 @@ public class XWikiRestServer implements Runnable
 
         // We deploy the applications
         server.deploy(application);
-        server.deploy(new IsRunningApplication(), "isrunning");
+        server.deploy(new IsRunningApplication());
 
         // We start the server
         server.start(undertowBuilder);
