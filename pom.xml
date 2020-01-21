@@ -28,7 +28,7 @@
     <version>9.11.8</version>
   </parent>
   <artifactId>xwiki-restserver</artifactId>
-  <version>3.3-SNAPSHOT</version>
+  <version>3.2.1</version>
   <name>XWiki Rest Server - Parent POM</name>
   <packaging>pom</packaging>
   <properties>
@@ -61,7 +61,7 @@
     <connection>scm:git:git://github.com/xwiki-contrib/xwiki-restserver.git</connection>
     <developerConnection>scm:git:git@github.com:xwiki-contrib/xwiki-restserver.git</developerConnection>
     <url>https://github.com/xwiki-contrib/xwiki-restserver/tree/master</url>
-    <tag>HEAD</tag>
+    <tag>xwiki-restserver-3.2.1</tag>
   </scm>
   <distributionManagement>
     <repository>
