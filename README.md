@@ -134,7 +134,7 @@ Add the following dependencies to your project:
 Then, write the functional test:
 ```java
 @AllComponents
-public class FunctionalTests
+public class FunctionalTest
 {
     /**
      * Utility class to run and perform requests on a test server.
