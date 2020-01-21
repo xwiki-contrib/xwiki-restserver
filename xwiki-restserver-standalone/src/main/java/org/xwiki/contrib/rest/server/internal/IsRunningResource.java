@@ -19,18 +19,31 @@
  */
 package org.xwiki.contrib.rest.server.internal;
 
+import org.xwiki.component.annotation.Component;
+import org.xwiki.contrib.rest.RestResource;
+
+import javax.inject.Named;
+import javax.inject.Singleton;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
 /**
- * Basic resource used to know is the server is running and ready.
+ * Basic resource used to know is the application is running and ready.
  *
  * @version $Id: $
  */
-@Path("/")
-public class IsRunningResource
+@Component
+@Singleton
+@Named(IsRunningResource.PATH)
+@Path(IsRunningResource.PATH)
+public class IsRunningResource implements RestResource
 {
+    /**
+     * Path of the resource.
+     */
+    public static final String PATH = "isrunning";
+
     /**
      * @return "OK", a plain text message to prove the server is running
      */

@@ -34,7 +34,7 @@ import static org.junit.Assert.assertEquals;
  * @version $Id: $
  */
 @AllComponents
-public class FunctionalTests
+public class FunctionalTest
 {
     private static TestServer testServer;
 
@@ -65,5 +65,16 @@ public class FunctionalTests
                 + "}";
 
         assertEquals(expectedResult, result);
+    }
+
+
+    @Test
+    public void testIsRunningResource() throws Exception
+    {
+        // Test
+        String result = testServer.doGet("/isrunning");
+
+        // Verify
+        assertEquals("OK", result);
     }
 }

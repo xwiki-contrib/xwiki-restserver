@@ -25,7 +25,6 @@ import org.jboss.resteasy.plugins.server.undertow.UndertowJaxrsServer;
 import org.xwiki.contrib.rest.RestResource;
 import org.xwiki.contrib.rest.XWikiJaxRsApplication;
 import org.xwiki.contrib.rest.XWikiRestServerException;
-import org.xwiki.contrib.rest.server.internal.IsRunningApplication;
 
 import io.undertow.Undertow;
 
@@ -144,7 +143,6 @@ public class XWikiRestServer implements Runnable
 
         // We deploy the applications
         server.deploy(application);
-        server.deploy(new IsRunningApplication());
 
         // We start the server
         server.start(undertowBuilder);
