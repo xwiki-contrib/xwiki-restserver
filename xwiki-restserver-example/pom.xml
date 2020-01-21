@@ -82,9 +82,17 @@
                 <exclude>META-INF/*.SF</exclude>
                 <exclude>META-INF/*.DSA</exclude>
                 <exclude>META-INF/*.RSA</exclude>
+                <exclude>module-info.class</exclude>
               </excludes>
             </filter>
           </filters>
+          <artifactSet>
+            <excludes>
+              <exclude>com.sun.activation:jakarta.activation</exclude>
+              <exclude>org.jboss.spec.javax.xml.bind:jboss-jaxb-api_2.3_spec</exclude>
+              <exclude>org.jboss.spec.javax.annotation:jboss-annotations-api_1.3_spec</exclude>
+            </excludes>
+          </artifactSet>
         </configuration>
         <executions>
           <execution>
