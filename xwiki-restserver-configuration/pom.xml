@@ -24,7 +24,7 @@
   <parent>
     <artifactId>xwiki-restserver</artifactId>
     <groupId>org.xwiki.contrib</groupId>
-    <version>3.3-SNAPSHOT</version>
+    <version>4.0</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
