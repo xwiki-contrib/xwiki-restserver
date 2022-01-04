@@ -25,10 +25,10 @@
   <parent>
     <groupId>org.xwiki.contrib</groupId>
     <artifactId>xwiki-restserver</artifactId>
-    <version>4.0</version>
+    <version>4.1-SNAPSHOT</version>
   </parent>
   <artifactId>xwiki-restserver-test</artifactId>
-  <version>4.0</version>
+  <version>4.1-SNAPSHOT</version>
   <name>XWiki Rest Server - Test framework</name>
   <dependencies>
     <dependency>

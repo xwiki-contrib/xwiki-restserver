@@ -25,7 +25,7 @@
   <parent>
     <groupId>org.xwiki.contrib</groupId>
     <artifactId>xwiki-restserver</artifactId>
-    <version>4.0</version>
+    <version>4.1-SNAPSHOT</version>
   </parent>
   <artifactId>xwiki-restserver-standalone</artifactId>
   <name>XWiki Rest Server - Standalone Server</name>
