@@ -25,8 +25,10 @@ import java.util.Map;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Provider;
+import javax.inject.Singleton;
 
 import org.jdom2.Element;
+import org.xwiki.component.annotation.Component;
 import org.xwiki.component.phase.Initializable;
 import org.xwiki.component.phase.InitializationException;
 import org.xwiki.contrib.rest.XWikiRestServerException;
@@ -40,6 +42,8 @@ import org.xwiki.text.StringUtils;
  *
  * @version $Id: $
  */
+@Component
+@Singleton
 public class DefaultXMLRestUserConfiguration implements XMLRestUserConfiguration, Initializable
 {
     private static final String USERS = "users";

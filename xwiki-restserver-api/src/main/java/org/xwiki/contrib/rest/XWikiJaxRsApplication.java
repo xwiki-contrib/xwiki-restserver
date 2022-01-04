@@ -93,7 +93,8 @@ public class XWikiJaxRsApplication extends Application
     }
 
     @Override
-    public Set<Object> getSingletons() {
+    public Set<Object> getSingletons()
+    {
         return restComponents;
     }
 

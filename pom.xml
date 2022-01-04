@@ -25,7 +25,7 @@
   <parent>
     <groupId>org.xwiki.contrib</groupId>
     <artifactId>parent-platform</artifactId>
-    <version>9.11.8</version>
+    <version>13.10.2</version>
   </parent>
   <artifactId>xwiki-restserver</artifactId>
   <version>3.3-SNAPSHOT</version>
@@ -33,13 +33,13 @@
   <packaging>pom</packaging>
   <properties>
     <!-- Version of third-party libraries -->
-    <commons.version>9.11.8</commons.version>
-    <resteasy.version>4.4.1.Final</resteasy.version>
-    <jackson.version>2.10.1</jackson.version>
+    <commons.version>13.10.2</commons.version>
+    <resteasy.version>5.0.1.Final</resteasy.version>
+    <jackson.version>2.13.0</jackson.version>
     <jackson.databind.version>${jackson.version}</jackson.databind.version>
-    <undertow.version>2.0.23.Final</undertow.version>
-    <logback.version>1.2.3</logback.version>
-    <slf4j.version>1.7.29</slf4j.version>
+    <undertow.version>2.2.7.Final</undertow.version>
+    <logback.version>1.2.10</logback.version>
+    <slf4j.version>1.7.32</slf4j.version>
   </properties>
   <modules>
     <module>xwiki-restserver-api</module>
@@ -70,43 +70,4 @@
       <url>http://nexus.xwiki.org/nexus/service/local/staging/deploy/maven2/</url>
     </repository>
   </distributionManagement>
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>org.apache.httpcomponents</groupId>
-        <artifactId>httpclient</artifactId>
-        <version>4.5.10</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.httpcomponents</groupId>
-        <artifactId>httpcore</artifactId>
-        <version>4.4.12</version>
-      </dependency>
-      <dependency>
-        <groupId>commons-codec</groupId>
-        <artifactId>commons-codec</artifactId>
-        <version>1.13</version>
-      </dependency>
-      <dependency>
-        <groupId>org.glassfish.jaxb</groupId>
-        <artifactId>jaxb-runtime</artifactId>
-        <version>2.3.3-b01</version>
-      </dependency>
-      <dependency>
-        <groupId>com.google.guava</groupId>
-        <artifactId>guava</artifactId>
-        <version>28.1-jre</version>
-      </dependency>
-      <dependency>
-        <groupId>org.jboss.spec.javax.servlet</groupId>
-        <artifactId>jboss-servlet-api_4.0_spec</artifactId>
-        <version>2.0.0.Final</version>
-      </dependency>
-      <dependency>
-        <groupId>org.jboss.logging</groupId>
-        <artifactId>jboss-logging</artifactId>
-        <version>3.4.0.Final</version>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
 </project>
