@@ -25,9 +25,9 @@
   <parent>
     <groupId>org.xwiki.contrib</groupId>
     <artifactId>xwiki-restserver</artifactId>
-    <version>5.0</version>
+    <version>5.1-SNAPSHOT</version>
   </parent>
-  <version>5.0</version>
+  <version>5.1-SNAPSHOT</version>
   <artifactId>xwiki-restserver-example</artifactId>
   <name>XWiki Rest Server - Example</name>
   <properties>
