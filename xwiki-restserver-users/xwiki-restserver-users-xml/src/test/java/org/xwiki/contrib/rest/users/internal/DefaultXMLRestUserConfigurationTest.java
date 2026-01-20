@@ -21,7 +21,7 @@ package org.xwiki.contrib.rest.users.internal;
 
 import java.util.Map;
 
-import javax.inject.Provider;
+import jakarta.inject.Provider;
 
 import org.jdom2.Document;
 import org.jdom2.input.SAXBuilder;

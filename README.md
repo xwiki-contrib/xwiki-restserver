@@ -113,8 +113,8 @@ Add the following dependencies to your project:
 ```xml
 <!-- Test dependencies -->
 <dependency>
-  <groupId>javax.servlet</groupId>
-  <artifactId>javax.servlet-api</artifactId>
+  <groupId>jakarta.servlet</groupId>
+  <artifactId>jakarta.servlet-api</artifactId>
   <scope>test</scope>
 </dependency>
 <dependency>

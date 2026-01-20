@@ -66,5 +66,9 @@
       <artifactId>resteasy-jackson2-provider</artifactId>
       <version>${resteasy.version}</version>
     </dependency>
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+    </dependency>
   </dependencies>
 </project>

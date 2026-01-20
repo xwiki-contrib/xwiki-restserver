@@ -19,14 +19,15 @@
  */
 package org.xwiki.contrib.rest.example;
 
-import java.util.Arrays;
 import java.util.Collection;
+import java.util.Arrays;
+
+import jakarta.inject.Singleton;
 
 import org.xwiki.component.annotation.Component;
 import org.xwiki.contrib.rest.users.RestUser;
 import org.xwiki.contrib.rest.users.RestUserManager;
 
-import javax.inject.Singleton;
 
 /**
  * Demo implementation of the {@link RestUserManager} component.

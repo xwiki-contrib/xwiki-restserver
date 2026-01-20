@@ -19,14 +19,14 @@
  */
 package org.xwiki.contrib.rest.server.internal;
 
+import jakarta.inject.Named;
+import jakarta.inject.Singleton;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+
 import org.xwiki.component.annotation.Component;
 import org.xwiki.contrib.rest.RestResource;
-
-import javax.inject.Named;
-import javax.inject.Singleton;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
 
 /**
  * Basic resource used to know is the application is running and ready.

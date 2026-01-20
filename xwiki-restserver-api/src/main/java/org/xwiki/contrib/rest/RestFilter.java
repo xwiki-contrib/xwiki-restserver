@@ -19,7 +19,7 @@
  */
 package org.xwiki.contrib.rest;
 
-import javax.ws.rs.container.ContainerRequestFilter;
+import jakarta.ws.rs.container.ContainerRequestFilter;
 
 import org.xwiki.component.annotation.Role;
 

@@ -19,11 +19,11 @@
  */
 package org.xwiki.contrib.rest.example;
 
-import javax.inject.Named;
-import javax.inject.Singleton;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import jakarta.inject.Named;
+import jakarta.inject.Singleton;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
 
 import org.jboss.resteasy.annotations.providers.jackson.Formatted;
 import org.xwiki.component.annotation.Component;

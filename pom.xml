@@ -25,7 +25,7 @@
   <parent>
     <groupId>org.xwiki.contrib</groupId>
     <artifactId>parent-platform</artifactId>
-    <version>14.10.15</version>
+    <version>17.10</version>
   </parent>
   <artifactId>xwiki-restserver</artifactId>
   <version>5.1-SNAPSHOT</version>
@@ -33,13 +33,12 @@
   <packaging>pom</packaging>
   <properties>
     <!-- Version of third-party libraries -->
-    <commons.version>14.10.5</commons.version>
-    <resteasy.version>5.0.8.Final</resteasy.version>
-    <jackson.version>2.15.2</jackson.version>
+    <commons.version>17.10.2</commons.version>
+    <resteasy.version>7.0.1.Final</resteasy.version>
+    <jackson.version>2.21.0</jackson.version>
     <jackson.databind.version>${jackson.version}</jackson.databind.version>
-    <undertow.version>2.2.26.Final</undertow.version>
-    <logback.version>1.4.11</logback.version>
-    <slf4j.version>2.0.7</slf4j.version>
+    <undertow.version>2.3.20.Final</undertow.version>
+    <xwiki.revapi.skip>true</xwiki.revapi.skip>
   </properties>
   <modules>
     <module>xwiki-restserver-api</module>
@@ -73,19 +72,29 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>org.apache.httpcomponents</groupId>
-        <artifactId>httpclient</artifactId>
-        <version>4.5.14</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.httpcomponents</groupId>
-        <artifactId>httpcore</artifactId>
-        <version>4.4.16</version>
+        <groupId>jakarta.validation</groupId>
+        <artifactId>jakarta.validation-api</artifactId>
+        <version>3.1.1</version>
       </dependency>
       <dependency>
         <groupId>jakarta.annotation</groupId>
         <artifactId>jakarta.annotation-api</artifactId>
         <version>2.1.1</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-annotations</artifactId>
+        <version>2.21</version>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.ws.rs</groupId>
+        <artifactId>jakarta.ws.rs-api</artifactId>
+        <version>4.0.0</version>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.servlet</groupId>
+        <artifactId>jakarta.servlet-api</artifactId>
+        <version>6.0.0</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

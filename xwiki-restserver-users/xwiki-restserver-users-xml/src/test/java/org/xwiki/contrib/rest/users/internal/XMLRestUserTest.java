@@ -19,7 +19,7 @@
  */
 package org.xwiki.contrib.rest.users.internal;
 
-import javax.inject.Provider;
+import jakarta.inject.Provider;
 
 import org.junit.Before;
 import org.junit.Rule;
