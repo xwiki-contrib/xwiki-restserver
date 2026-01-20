@@ -28,7 +28,7 @@
     <version>17.10</version>
   </parent>
   <artifactId>xwiki-restserver</artifactId>
-  <version>5.1-SNAPSHOT</version>
+  <version>6.0</version>
   <name>XWiki Rest Server - Parent POM</name>
   <packaging>pom</packaging>
   <properties>
@@ -60,7 +60,7 @@
     <connection>scm:git:git://github.com/xwiki-contrib/xwiki-restserver.git</connection>
     <developerConnection>scm:git:git@github.com:xwiki-contrib/xwiki-restserver.git</developerConnection>
     <url>https://github.com/xwiki-contrib/xwiki-restserver/tree/master</url>
-    <tag>HEAD</tag>
+    <tag>xwiki-restserver-6.0</tag>
   </scm>
   <distributionManagement>
     <repository>
