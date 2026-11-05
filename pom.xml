@@ -37,7 +37,7 @@
     <resteasy.version>7.0.1.Final</resteasy.version>
     <jackson.version>2.21.0</jackson.version>
     <jackson.databind.version>${jackson.version}</jackson.databind.version>
-    <undertow.version>2.3.20.Final</undertow.version>
+    <undertow.version>2.3.25.Final</undertow.version>
     <xwiki.revapi.skip>true</xwiki.revapi.skip>
   </properties>
   <modules>
